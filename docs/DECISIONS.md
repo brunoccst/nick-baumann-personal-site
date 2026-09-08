@@ -87,11 +87,12 @@ origin.
 
 ## Why there is no CI
 
-Netlify's deploy previews already build and type-check every pull request
-against `netlify.toml`'s build command, so a separate GitHub Actions
-workflow running the same `npm run build` would duplicate a check that
-already exists and already gates merges. `docs/NEXT-STEPS.md` lists adding
-one anyway as an optional step, for a status check independent of Netlify.
+Once the Netlify project is linked to this repository, its deploy previews
+will build and type-check every pull request against `netlify.toml`'s build
+command, so a separate GitHub Actions workflow running the same `npm run
+build` would duplicate a check that already exists and will already gate
+merges. `docs/NEXT-STEPS.md` lists adding one anyway as an optional step,
+for a status check independent of Netlify.
 
 ## Why the repository is under `brunoccst`
 

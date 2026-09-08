@@ -12,6 +12,11 @@ export const DEFAULT_LANGUAGE: Language = 'en';
 
 const STORAGE_KEY = 'nick-baumann-site.language';
 
+// Maps each supported language to its locale object, so both places that
+// need to read `meta` (the initial <html lang> assignment and
+// `persistLanguage`) share one lookup instead of duplicating a switch.
+const LOCALES: Record<Language, typeof en> = { en, de };
+
 // Narrows an unknown string to a supported language code.
 export function isSupported(value: string | null | undefined): value is Language {
   return SUPPORTED_LANGUAGES.includes(value as Language);
@@ -36,7 +41,7 @@ function detectLanguage(): Language {
 
 // Writes the language to storage and syncs the `lang` attribute on <html>.
 export function persistLanguage(language: Language): void {
-  document.documentElement.lang = language;
+  document.documentElement.lang = LOCALES[language].meta.htmlLang;
   try {
     window.localStorage.setItem(STORAGE_KEY, language);
   } catch {
@@ -58,6 +63,6 @@ void i18next.use(initReactI18next).init({
   returnObjects: true,
 });
 
-document.documentElement.lang = initialLanguage;
+document.documentElement.lang = LOCALES[initialLanguage].meta.htmlLang;
 
 export default i18next;

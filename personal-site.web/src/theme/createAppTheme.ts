@@ -34,6 +34,8 @@ export function createAppTheme(mode: ThemeMode): Theme {
               color: 'var(--color-text)',
               backgroundColor: 'var(--color-surface)',
             },
+            // Mirrors the `focus-ring` mixin in `_mixins.scss` — a Sass mixin
+            // cannot be called from TypeScript, so keep the two in step by hand.
             '&:focus-visible': {
               outline: '2px solid var(--color-focus)',
               outlineOffset: '2px',
@@ -53,7 +55,7 @@ export function createAppTheme(mode: ThemeMode): Theme {
             border: '1px solid var(--color-border)',
             borderRadius: 0,
             fontSize: 'var(--text-sm)',
-            padding: '6px 10px',
+            padding: 'var(--space-1) var(--space-2)',
           },
         },
       },

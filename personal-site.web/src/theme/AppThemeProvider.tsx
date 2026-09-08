@@ -7,6 +7,14 @@ import { ThemeModeContext, type ThemeMode } from './themeContext';
 
 const STORAGE_KEY = 'nick-baumann-site.theme';
 
+// Mirrors `--color-bg` in `_tokens.scss` for the two themes. `<meta
+// name="theme-color">` cannot read a CSS custom property, so these are kept
+// as literal values here — if `--color-bg` changes, update this too.
+const THEME_COLOR: Record<ThemeMode, string> = {
+  dark: '#121212',
+  light: '#ffffff',
+};
+
 // Returns the stored mode, then the operating system preference, then 'dark'.
 function detectMode(): ThemeMode {
   try {
@@ -25,6 +33,12 @@ export function AppThemeProvider({ children }: { children: ReactNode }) {
   // Exposes the mode to CSS through a `data-theme` attribute on <html>.
   useEffect(() => {
     document.documentElement.dataset.theme = mode;
+
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute('content', THEME_COLOR[mode]);
+    }
+
     try {
       window.localStorage.setItem(STORAGE_KEY, mode);
     } catch {

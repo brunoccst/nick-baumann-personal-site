@@ -9,13 +9,17 @@ site was built, and finishing the structure first meant the eventual style
 could be applied without fighting anything already in place. See
 `docs/DECISIONS.md` for the reasoning and the restyle contract.
 
-## All copy is Lorem Ipsum
+## Body copy is Lorem Ipsum; the interface text is real
 
 The About paragraphs, the Experience summaries and stack tags, the link
 descriptions, the section kickers, `identity.role`, and `footer.note` are
-placeholder Latin text in both `en.json` and `de.json`. This is expected —
-the recipient replaces it with his own words. `docs/NEXT-STEPS.md` and the
-README's "Translations" section say exactly what to edit.
+placeholder Latin text in both `en.json` and `de.json` — that is the body
+copy, and it is expected to be filler. Navigation labels, control labels,
+accessibility strings, section titles and link labels are real text in both
+locales, not Lorem Ipsum, because Lorem Ipsum would break them rather than
+stand in for them. The recipient replaces the body copy with his own words;
+`docs/NEXT-STEPS.md` and the README's "Translations" section say exactly
+what to edit.
 
 ## `npm install` crashes on the npm version bundled with recent Node 22 installers
 
@@ -80,12 +84,14 @@ real person's profile: `https://github.com/`, `https://www.linkedin.com/`,
 `https://mastodon.social/`, and a `mailto:hello@example.com` that nobody
 reads. These are meant to be replaced — see `docs/NEXT-STEPS.md`.
 
-## The repository and hosting are owned by `brunoccst`, not the recipient
+## The repository and hosting are to be owned by `brunoccst`, not the recipient
 
-Both the GitHub repository and the Netlify project are currently under the
-`brunoccst` account/team, because the recipient's GitHub account did not
-exist when the site was built. `docs/DECISIONS.md` explains why, and
-`docs/NEXT-STEPS.md` lists the transfer steps.
+The repository has no remote yet and the site is not deployed. Once
+published, both the GitHub repository and the Netlify project are to be
+created under the `brunoccst` account/team, because the recipient's GitHub
+account did not exist when the site was built, and transferred to him
+later. `docs/DECISIONS.md` explains why, and `docs/NEXT-STEPS.md` lists the
+transfer steps.
 
 ## The favicon is a placeholder monogram
 

@@ -234,7 +234,11 @@ announcing "Ipsum section" tells its listener nothing:
 - `meta.htmlLang` and `meta.nativeName` — the locale's own identifiers.
 
 These are also the strings that differ between `en.json` and `de.json`. The Lorem
-Ipsum body copy is identical in both files, because Lorem Ipsum has no language.
+Ipsum body copy is identical in both files, because Lorem Ipsum has no language —
+with one exception: `sections.experience.items[0].period` is `"Lorem 2022 — Present"`
+in English and `"Lorem 2022 — heute"` in German, because its trailing word is the
+real, open-ended "present", not filler, and leaving "Present" in the German view
+would be worse than translating it.
 
 ---
 

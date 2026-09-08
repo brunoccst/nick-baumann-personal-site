@@ -38,7 +38,7 @@ export function SystemControls() {
         >
           <TranslateRounded fontSize="small" />
           <span className={styles.code} aria-hidden="true">
-            {currentLanguage.toUpperCase()}
+            {t('meta.nativeName')}
           </span>
         </IconButton>
       </Tooltip>
@@ -47,7 +47,6 @@ export function SystemControls() {
         <IconButton
           onClick={toggleMode}
           aria-label={themeLabel}
-          aria-pressed={mode === 'dark'}
           size="small"
         >
           {mode === 'dark' ? (

@@ -15,7 +15,8 @@ words. See "Translations" below for exactly what is safe to edit.
 ## Requirements
 
 - Node.js 22 or later
-- npm 10 or later
+- npm 11 or later (see the known issue below — npm 10.9.3 crashes on this
+  dependency set)
 
 npm 10.9.3 (the version bundled with recent Node 22 installers) fails to
 install this project's dependencies: `@npmcli/arborist` hits a bug
@@ -69,6 +70,7 @@ carry the metadata and hrefs the app expects).
 
 ```
 nick-baumann-personal-site/
+├── .gitignore
 ├── LICENSE                     MIT, copyright Nick Baumann — the site is a gift,
 │                               so the recipient is the copyright holder
 ├── README.md
@@ -77,7 +79,10 @@ nick-baumann-personal-site/
 │   ├── DECISIONS.md            Why the project is built this way
 │   ├── KNOWN-ISSUES.md         What is wrong or incomplete
 │   ├── NEXT-STEPS.md           Planned work
-│   └── superpowers/specs/      Design documents
+│   └── superpowers/            The design spec and implementation plan the
+│                               site was built from — the spec is worth
+│                               reading before restyling; the plan is a
+│                               build record
 └── personal-site.web/          The React application
 ```
 
@@ -248,6 +253,9 @@ reproducible from the repository alone:
   on a route like `/experience` works instead of 404ing.
 - `X-Content-Type-Options`, `X-Frame-Options` and `Referrer-Policy` headers,
   and a one-year immutable cache on `/assets/*`.
+
+The site is not deployed yet. Once the Netlify project is created, its name
+and live URL will be recorded here.
 
 ## Licence
 
