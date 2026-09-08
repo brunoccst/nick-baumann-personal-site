@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "nativeName": "English",
+    "htmlLang": "en"
+  },
+  "identity": {
+    "name": "Nick Baumann",
+    "role": "Lorem Ipsum Dolor Sit Amet"
+  },
+  "nav": {
+    "label": "Site sections",
+    "about": "About",
+    "experience": "Experience",
+    "links": "Links"
+  },
+  "controls": {
+    "label": "Site options",
+    "language": "Switch language to German",
+    "theme": {
+      "toDark": "Switch to the dark theme",
+      "toLight": "Switch to the light theme"
+    }
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "opensInNewTab": "(opens in a new tab)",
+    "sectionAnnouncement": "{{section}} section",
+    "pageTitle": "{{section}} — Nick Baumann"
+  },
+  "footer": {
+    "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  "sections": {
+    "about": {
+      "title": "About",
+      "kicker": "Lorem ipsum",
+      "paragraphs": [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+      ]
+    },
+    "experience": {
+      "title": "Experience",
+      "kicker": "Lorem — ipsum",
+      "items": [
+        {
+          "period": "Lorem 2022 — Present",
+          "role": "Lorem Ipsum Engineer",
+          "organisation": "Dolor Sit GmbH",
+          "location": "Lorem",
+          "summary": "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam.",
+          "stack": [
+            "Lorem",
+            "Ipsum",
+            "Dolor",
+            "Sit Amet",
+            "Consectetur",
+            "Adipiscing",
+            "Elit",
+            "Tempor"
+          ]
+        },
+        {
+          "period": "Lorem 2019 — Lorem 2022",
+          "role": "Dolor Sit Developer",
+          "organisation": "Amet Consectetur AG",
+          "location": "Ipsum",
+          "summary": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute.",
+          "stack": [
+            "Incididunt",
+            "Labore",
+            "Dolore",
+            "Magna",
+            "Aliqua",
+            "Veniam",
+            "Nostrud",
+            "Ullamco"
+          ]
+        },
+        {
+          "period": "Lorem 2017 — Lorem 2019",
+          "role": "Adipiscing Associate",
+          "organisation": "Elit Sed Do",
+          "location": "Dolor",
+          "summary": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "stack": [
+            "Laboris",
+            "Aliquip",
+            "Commodo",
+            "Consequat",
+            "Reprehenderit",
+            "Voluptate",
+            "Cillum",
+            "Pariatur"
+          ]
+        }
+      ]
+    },
+    "links": {
+      "title": "Links",
+      "kicker": "Lorem ipsum dolor",
+      "items": [
+        {
+          "label": "GitHub",
+          "description": "Lorem ipsum dolor sit amet consectetur.",
+          "href": "https://github.com/"
+        },
+        {
+          "label": "LinkedIn",
+          "description": "Adipiscing elit sed do eiusmod tempor.",
+          "href": "https://www.linkedin.com/"
+        },
+        {
+          "label": "Mastodon",
+          "description": "Incididunt ut labore et dolore magna.",
+          "href": "https://mastodon.social/"
+        },
+        {
+          "label": "Email",
+          "description": "Aliqua ut enim ad minim veniam quis.",
+          "href": "mailto:hello@example.com"
+        }
+      ]
+    }
+  }
+}

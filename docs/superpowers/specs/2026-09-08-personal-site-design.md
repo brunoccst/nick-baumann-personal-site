@@ -218,14 +218,27 @@ key falls back to English. The starting language is chosen from
 `localStorage['nick-baumann-site.language']`, then the browser's languages, then
 English.
 
-All copy is Lorem Ipsum, in realistic quantities: four About paragraphs, three
-Experience entries with roughly eight stack tags each, four Links.
+Body copy is Lorem Ipsum, in realistic quantities: four About paragraphs, three
+Experience entries with eight stack tags each, four Links. That covers the About
+paragraphs, the Experience summaries and stack tags, the link descriptions, the
+kickers, the role, and the footer note — the words the recipient will replace.
 
-Three values are real rather than Lorem, because Lorem would break them:
+Interface text stays real, because Lorem Ipsum would break it rather than stand
+in for it. A navigation labelled "Lorem" cannot be navigated, and a screen reader
+announcing "Ipsum section" tells its listener nothing:
 
+- Navigation labels, control labels, and the accessibility strings.
+- Section titles, and the link labels (`GitHub`, `LinkedIn`, and so on).
 - `identity.name` — "Nick Baumann".
 - `href` values in the Links section — real placeholder URLs and a `mailto:`.
 - `meta.htmlLang` and `meta.nativeName` — the locale's own identifiers.
+
+These are also the strings that differ between `en.json` and `de.json`. The Lorem
+Ipsum body copy is identical in both files, because Lorem Ipsum has no language —
+with one exception: `sections.experience.items[0].period` is `"Lorem 2022 — Present"`
+in English and `"Lorem 2022 — heute"` in German, because its trailing word is the
+real, open-ended "present", not filler, and leaving "Present" in the German view
+would be worse than translating it.
 
 ---
 

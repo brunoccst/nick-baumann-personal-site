@@ -1,0 +1,42 @@
+@use '../../styles/mixins' as m;
+@use '../../styles/variables' as v;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+  gap: var(--space-6);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+
+  @include m.below(v.$bp-sm) {
+    flex-direction: column;
+  }
+}
+
+.headerEnd {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.main {
+  flex: 1;
+}
+
+.footer {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}

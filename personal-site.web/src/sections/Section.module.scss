@@ -1,0 +1,104 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.kicker {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-top: var(--space-2);
+  list-style: none;
+}
+
+// --- Experience ---
+
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.period {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.separator {
+  margin: 0 var(--space-2);
+}
+
+.role {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+.organisation {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.summary {
+  margin-top: var(--space-2);
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  list-style: none;
+}
+
+.tag {
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+// --- Links ---
+
+.link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border);
+  transition: color var(--transition);
+
+  &:hover .linkLabel {
+    color: var(--color-accent);
+  }
+}
+
+.linkLabel {
+  font-weight: 600;
+  transition: color var(--transition);
+}
+
+.linkDescription {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
