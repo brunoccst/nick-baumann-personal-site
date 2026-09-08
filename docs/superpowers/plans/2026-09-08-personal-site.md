@@ -18,7 +18,7 @@
 - Node 22 or newer, npm 10 or newer. `NODE_VERSION = "22"` in `netlify.toml`.
 - `localStorage` keys are **`nick-baumann-site.theme`** and **`nick-baumann-site.language`**. Never `personal-site.*` — the reference project already owns those keys on `http://localhost:5173`.
 - Locales are **`en`** and **`de`**. `en` is the default and the fallback.
-- All user-facing copy is Lorem Ipsum. The only real values are `identity.name` = `"Nick Baumann"`, the `href` values in the links section, and each locale's `meta.htmlLang` / `meta.nativeName`.
+- **Body copy** is Lorem Ipsum: the About paragraphs, the Experience summaries and stack tags, the link descriptions, the kickers, the role, and the footer note. **Interface text is real**, because Lorem Ipsum would break it: navigation labels, control labels, accessibility strings, section titles, and link labels (`GitHub`, `LinkedIn`, …). Also real: `identity.name` = `"Nick Baumann"`, the `href` values in the links section, and each locale's `meta.htmlLang` / `meta.nativeName`.
 - `LICENSE` is MIT, `Copyright (c) 2026 Nick Baumann`.
 - Do **not** create `.github/workflows`. There is no CI by design.
 - Do **not** port `Intro`, `ContentPanel`, `SideNav`, or `useSectionNavigation`. The page scrolls normally.
