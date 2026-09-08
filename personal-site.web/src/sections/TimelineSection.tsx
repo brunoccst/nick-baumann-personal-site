@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
+import { EmphasisedText } from '../i18n/EmphasisedText';
 import { useTranslatedList } from '../i18n/useTranslatedList';
 import styles from './Section.module.scss';
 
@@ -41,9 +42,13 @@ export default function TimelineSection({ sectionId }: { sectionId: TimelineSect
               {item.location}
             </span>
 
-            <h3 className={styles.role}>{item.role}</h3>
+            <h3 className={styles.role}>
+              <EmphasisedText>{item.role}</EmphasisedText>
+            </h3>
             <span className={styles.organisation}>{item.organisation}</span>
-            <p className={styles.summary}>{item.summary}</p>
+            <p className={styles.summary}>
+              <EmphasisedText>{item.summary}</EmphasisedText>
+            </p>
 
             {item.stack.length > 0 && (
               <ul className={styles.stack}>

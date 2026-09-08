@@ -19,6 +19,10 @@ html {
 }
 
 body {
+  // A flat fallback only. The gradient is painted by the fixed backdrop in
+  // `components/Blueprint`, so it neither stretches nor repeats as the page
+  // grows. MUI's CssBaseline also writes this property from the theme
+  // palette, which resolves to the same custom property.
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);

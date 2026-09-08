@@ -1,31 +1,11 @@
 # Known issues
 
-## The visual style is a placeholder, not a design
-
-Every colour, spacing value and layout rule in `src/styles/_tokens.scss` and
-the component `*.module.scss` files is a neutral placeholder. This is
-intended, not an oversight: the visual style had not been chosen when the
-site was built, and finishing the structure first meant the eventual style
-could be applied without fighting anything already in place. See
-`docs/DECISIONS.md` for the reasoning and the restyle contract.
-
-## The Links section is still placeholder
-
-Everything else on the site is real content, taken from Nick's CV and
-application letter. The four entries in the Links section are not: they point
-at `https://github.com/`, `https://www.linkedin.com/`,
-`https://mastodon.social/` and `mailto:hello@example.com`, because no real
-profile URLs were available. Each description says it is a placeholder, so a
-visitor is not misled, but the links go nowhere useful. Replace them or delete
-the entries that don't apply — see `docs/NEXT-STEPS.md`.
-
 ## Personal data is deliberately absent
 
-The CV and application letter the content came from contain a home address, a
-mobile number, a personal email address, a date and place of birth, a
-nationality and a final grade. None of it was published, and none of it should
-be added without asking Nick first. If you add a contact link, prefer a form or
-an address he is willing to see scraped.
+Home address, phone number, personal email address, date and place of birth,
+nationality and school grades are not published, and should not be added
+without asking Nick first. If a contact route is wanted, prefer a form over an
+address in the markup.
 
 ## `npm install` crashes on the npm version bundled with recent Node 22 installers
 
@@ -83,23 +63,20 @@ user interaction, or the app end to end. Everything else is checked by
 `tsc` (`npm run typecheck` and the type-check step in `npm run build`), by
 the production build succeeding, and by hand in a browser.
 
-## Placeholder link destinations
+## The Links section has a single entry
 
-The Links section's `href` values point at real site roots rather than a
-real person's profile: `https://github.com/`, `https://www.linkedin.com/`,
-`https://mastodon.social/`, and a `mailto:hello@example.com` that nobody
-reads. These are meant to be replaced — see `docs/NEXT-STEPS.md`.
+Links lists only LinkedIn. There is no GitHub, Mastodon or email entry,
+because no other public profile was available. Adding one is a locale-file
+edit; adding an email address is not — see below.
 
-## The repository and hosting are owned by `brunoccst`, not the recipient
+## The repository and hosting are owned by `brunoccst`
 
 The GitHub repository `brunoccst/nick-baumann-personal-site` and the Netlify
 project `nick-baumann` both live under the `brunoccst` account and team,
-because the recipient's GitHub account did not exist when the site was
-built. Both still need transferring to him. `docs/DECISIONS.md` explains
-why it was done this way, and `docs/NEXT-STEPS.md` lists the transfer steps.
+because Nick's GitHub account did not exist when the site was built. Both
+still need transferring. `docs/NEXT-STEPS.md` lists the steps.
 
-## The favicon is a placeholder monogram
+## The favicon does not match the styling
 
-`public/favicon.svg` is a plain "NB" monogram on a flat dark background,
-matched to the current placeholder styling rather than any chosen visual
-identity. It is meant to be replaced alongside the rest of the visual style.
+`public/favicon.svg` is a plain "NB" monogram on a flat dark background. It
+predates the blueprint styling and does not reflect it.

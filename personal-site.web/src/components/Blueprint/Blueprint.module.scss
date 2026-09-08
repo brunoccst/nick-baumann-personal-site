@@ -1,0 +1,46 @@
+@use '../../styles/mixins' as m;
+@use '../../styles/variables' as v;
+
+// Fixed behind everything, so the page scrolls over a drawing that stays put.
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: v.$z-backdrop;
+  overflow: hidden;
+  pointer-events: none;
+
+  // The lit-drafting-table wash. Its bright point sits behind the content
+  // column, which is why the text contrast is measured against `--color-bg`
+  // rather than the darker edge.
+  background:
+    radial-gradient(
+      120% 90% at 30% 28%,
+      var(--color-bg) 0%,
+      var(--color-bg-edge) 78%
+    );
+  transition: background var(--transition);
+}
+
+// The drawing bleeds off the right and bottom edges, as a sheet larger than
+// the window would. `slice` keeps its aspect ratio and crops the overflow.
+.drawing {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.85;
+}
+
+// Below the layout's breakpoint the text column covers most of the viewport,
+// so the drawing has nowhere to sit that is clear of the words.
+@include m.below(v.$bp-lg) {
+  .drawing {
+    opacity: 0.45;
+  }
+}
+
+@include m.below(v.$bp-sm) {
+  .drawing {
+    opacity: 0.25;
+  }
+}

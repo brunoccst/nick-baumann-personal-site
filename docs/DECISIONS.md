@@ -3,21 +3,29 @@
 This records why the project is built the way it is, not what the code does.
 Read `README.md` for that.
 
-## Why the visual layer is empty
+## Why the styling is a technical drawing
 
-The visual style had not been chosen when this site was built. Rather than
-guess at colours, type and layout ornament and have someone undo that work
-later, the structural layer — routing, theming, translations, accessibility —
-was finished on its own, and the visual layer was left as a neutral
-placeholder: `src/styles/_tokens.scss` and the component `*.module.scss`
-files.
+The subject is mechatronics, so the page is presented as an engineering
+drawing: an exploded assembly — rotor, bearings, gear train, belt drive,
+encoder, control board — behind a light blueprint-blue theme and a black one.
 
-The restyle contract is deliberately narrow: **class names and DOM structure
-are stable; every value in `_tokens.scss` and every rule in a `*.module.scss`
-file is replaceable.** Whoever picks the style later can rewrite colours,
-type, spacing and motion without touching a component, and without the
-router, the translations or the accessibility behaviour moving underneath
-them.
+It is inline SVG rather than an image file for three reasons. Strokes read
+`--color-blueprint-line`, so one drawing serves both themes instead of two
+exported assets drifting apart. It scales without resampling, which matters
+for hairlines. And it costs no extra request.
+
+Gear teeth, windings and encoder slots are dashed strokes on circles, not
+individually placed segments: one attribute where dozens of hand-placed lines
+would otherwise need to stay evenly spaced by hand.
+
+The drawing is decorative, so it is `aria-hidden` and carries no text. It
+fades out on narrow viewports, where the text column has nowhere to sit that
+is clear of it.
+
+**The styling contract still holds:** class names and DOM structure are
+stable, and every value in `_tokens.scss` and every rule in a `*.module.scss`
+file is replaceable without touching a component or disturbing the router,
+the translations or the accessibility behaviour.
 
 ## Why the architecture came from `brunoccst/personal-site`
 
@@ -50,30 +58,31 @@ on specificity. Dropping MUI for two hand-rolled `<button>` elements remains
 a reasonable option, and would remove `@emotion/react` and
 `@emotion/styled` as well.
 
-## Where the content came from, and what was left out
+## What is deliberately not published
 
-The site shipped with Lorem Ipsum, because nobody else can write a person's
-own words for him. It was later replaced with real content taken from two
-documents Nick wrote himself: his CV (`Lebenslauf`) and a job application
-letter (`Bewerbungsanschreiben`).
+Home address, phone number, personal email address, date and place of birth,
+nationality, and school grades are all absent, and none should be added
+without asking Nick first.
 
-The About paragraphs are his own "Über mich" text plus the self-description
-from his letter, with everything specific to that application removed — the
-company he was writing to, the person he addressed, and the role he was
-applying for have no place on his own site. The Experience summaries are the
-duties listed on his CV. The Education entries are his CV's `Bildungsweg`,
-which is why the site lists a third school the LinkedIn profile does not.
+A personal site reaches a wider audience than a job application, and contact
+details on a public page invite scraping. If a contact route is wanted later,
+a form is preferable to an address in the markup.
 
-**Deliberately not published.** The source documents contain a home address,
-a mobile number, a personal email address, a date and place of birth, a
-nationality and a final grade. None of that is in this repository, and none
-of it should be added later without asking him. A personal site is a wider
-audience than a job application, and contact details on a public page invite
-scraping.
+## Why German terms are kept in the English locale
 
-What remains placeholder is the Links section: four `href` values pointing at
-site roots and an `example.com` address, each with a description saying so.
-Real profile URLs were not available. `docs/NEXT-STEPS.md` tracks it.
+Job titles and qualifications like *Monteur*, *Ausbildung zum Mechatroniker*
+and *staatlich geprüfter Mechatroniktechniker* name specific German
+credentials. Translating them outright would misstate a qualification a German
+employer recognises; leaving them bare would strand an English reader.
+
+So the English locale keeps the German term, italicises it, and follows it
+with a gloss. The markup lives in the components, not the JSON: a term is
+wrapped in asterisks in the locale file, and `i18n/emphasis.ts` splits on
+those so `EmphasisedText` can render `<em lang="de">`. The `lang` attribute
+also gets the pronunciation right in a screen reader.
+
+Institution, company and place names are left alone — "Technikerschule
+Augsburg" is a proper noun, not a term to translate.
 
 ## Why the `localStorage` keys are `nick-baumann-site.*`
 
@@ -98,7 +107,7 @@ status check independent of Netlify.
 ## Why the repository is under `brunoccst`
 
 The GitHub account `nick-baumann` did not exist when this site was built, so
-the repository was created under the author's own account and is meant to
+the repository was created under `brunoccst` and is meant to
 be transferred once that account exists. A GitHub transfer preserves commit
 history, issues and stars, which recreating the repository under a new
 account would not.
@@ -108,30 +117,38 @@ account would not.
 Measured against each theme's background colour. All figures clear WCAG AA
 for body text (4.5:1 for normal text, 3:1 for large text and UI components).
 
-**Light theme, on `--color-bg` `#ffffff`:**
+Each background is a radial gradient. The ratios below use `--color-bg`, its
+**lightest** stop, because that is the worst case for text sitting on it; over
+`--color-bg-edge` every figure improves.
+
+**Light theme, on `--color-bg` `#145b8a`:**
 
 | Token | Value | Ratio |
 | --- | --- | --- |
-| `--color-text` | `#1a1a1a` | 17.40:1 |
-| `--color-text-muted` | `#595959` | 7.00:1 |
-| `--color-accent` | `#2c5aa0` | 6.82:1 |
+| `--color-text` | `#f2f8fc` | 6.78:1 |
+| `--color-text-muted` | `#cfe3f2` | 5.50:1 |
+| `--color-accent` | `#a5dbfa` | 4.88:1 |
 
-**Dark theme, on `--color-bg` `#121212`:**
+**Dark theme, on `--color-bg` `#0a1016`:**
 
 | Token | Value | Ratio |
 | --- | --- | --- |
-| `--color-text` | `#ededed` | 16.00:1 |
-| `--color-text-muted` | `#a3a3a3` | 7.43:1 |
-| `--color-accent` | `#7aa2d6` | 7.11:1 |
+| `--color-text` | `#ededed` | 16.33:1 |
+| `--color-text-muted` | `#a3a3a3` | 7.58:1 |
+| `--color-accent` | `#7aa2d6` | 7.25:1 |
+
+`--color-accent` is link hover text as well as the focus ring, so it is held
+to 4.5:1 rather than the 3:1 a non-text control would need. That is what ruled
+out the more saturated blues first tried against the blueprint background.
 
 ## Why the section lists are keyed by array index
 
-`AboutSection`, `ExperienceSection` and `LinksSection` all key their
+`AboutSection`, `TimelineSection` and `LinksSection` all key their
 `.map()`-rendered list items by array index rather than by a value derived
 from the item's content. A key derived from content — a paragraph's text, a
-link's label — collides the moment that content is edited to match another
-item, which is the one thing this repository exists to have happen to its
-placeholder copy.
+link's label — collides as soon as two items share the value it is derived
+from, and a duplicate React key is a silent rendering bug rather than an
+error.
 
 Index keys are safe here because none of the conditions that make them risky
 apply to these lists:
@@ -144,5 +161,5 @@ apply to these lists:
   index key is exactly what lets React update each item's text in place
   instead of remounting it.
 
-An index key is also simpler than deriving a stable key from content that a
-gift recipient is expected to rewrite.
+An index key is also simpler than deriving a stable key from content that is
+expected to be edited.

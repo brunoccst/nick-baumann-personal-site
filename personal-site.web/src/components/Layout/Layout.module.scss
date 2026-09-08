@@ -2,6 +2,9 @@
 @use '../../styles/variables' as v;
 
 .page {
+  // Above the blueprint backdrop, which is fixed at z-index 0.
+  position: relative;
+  z-index: v.$z-page;
   display: flex;
   flex-direction: column;
   min-height: 100vh;

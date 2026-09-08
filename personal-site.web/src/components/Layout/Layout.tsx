@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 
 import { findSectionByPath } from '../../config/sections';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
+import { Blueprint } from '../Blueprint/Blueprint';
 import { Brand } from '../Brand/Brand';
 import { Nav } from '../Nav/Nav';
 import { SystemControls } from '../SystemControls/SystemControls';
@@ -24,27 +25,31 @@ export function Layout() {
   useDocumentTitle(t('a11y.pageTitle', { section: sectionLabel }));
 
   return (
-    <div className={styles.page}>
-      <header className={styles.header}>
-        <Brand />
+    <>
+      <Blueprint />
 
-        <div className={styles.headerEnd}>
-          <Nav />
-          <SystemControls />
-        </div>
-      </header>
+      <div className={styles.page}>
+        <header className={styles.header}>
+          <Brand />
 
-      <main id="content" className={styles.main} aria-label={sectionLabel}>
-        <Outlet />
-      </main>
+          <div className={styles.headerEnd}>
+            <Nav />
+            <SystemControls />
+          </div>
+        </header>
 
-      <footer className={styles.footer}>
-        <p>{t('footer.note')}</p>
-      </footer>
+        <main id="content" className={styles.main} aria-label={sectionLabel}>
+          <Outlet />
+        </main>
 
-      <p className="visually-hidden" role="status" aria-live="polite">
-        {t('a11y.sectionAnnouncement', { section: sectionLabel })}
-      </p>
-    </div>
+        <footer className={styles.footer}>
+          <p>{t('footer.note')}</p>
+        </footer>
+
+        <p className="visually-hidden" role="status" aria-live="polite">
+          {t('a11y.sectionAnnouncement', { section: sectionLabel })}
+        </p>
+      </div>
+    </>
   );
 }

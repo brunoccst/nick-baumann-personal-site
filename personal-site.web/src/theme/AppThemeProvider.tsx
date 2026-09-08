@@ -10,9 +10,11 @@ const STORAGE_KEY = 'nick-baumann-site.theme';
 // Mirrors `--color-bg` in `_tokens.scss` for the two themes. `<meta
 // name="theme-color">` cannot read a CSS custom property, so these are kept
 // as literal values here — if `--color-bg` changes, update this too.
+// Tints the browser chrome on mobile. These mirror `--color-bg` in
+// `styles/_tokens.scss` and must be updated together with it.
 const THEME_COLOR: Record<ThemeMode, string> = {
-  dark: '#121212',
-  light: '#ffffff',
+  dark: '#0a1016',
+  light: '#145b8a',
 };
 
 // Returns the stored mode, then the operating system preference, then 'dark'.

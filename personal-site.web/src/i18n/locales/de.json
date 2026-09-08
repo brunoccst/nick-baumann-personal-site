@@ -102,27 +102,12 @@
     },
     "links": {
       "title": "Links",
-      "kicker": "Platzhalter — noch zu ersetzen",
+      "kicker": "Anderswo",
       "items": [
         {
-          "label": "GitHub",
-          "description": "Platzhalter-Link. Durch ein echtes Profil ersetzen.",
-          "href": "https://github.com/"
-        },
-        {
           "label": "LinkedIn",
-          "description": "Platzhalter-Link. Durch ein echtes Profil ersetzen.",
-          "href": "https://www.linkedin.com/"
-        },
-        {
-          "label": "Mastodon",
-          "description": "Platzhalter-Link. Ersetzen oder entfernen.",
-          "href": "https://mastodon.social/"
-        },
-        {
-          "label": "E-Mail",
-          "description": "Platzhalter-Adresse. Durch eine echte ersetzen.",
-          "href": "mailto:hello@example.com"
+          "description": "Berufliches Profil und Werdegang.",
+          "href": "https://www.linkedin.com/in/nick-baumann-23884842b/"
         }
       ]
     }

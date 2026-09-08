@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
+import { EmphasisedText } from '../i18n/EmphasisedText';
 import { useTranslatedList } from '../i18n/useTranslatedList';
 import styles from './Section.module.scss';
 
@@ -20,10 +21,12 @@ export default function AboutSection() {
           changes wholesale is a language switch, where an index key lets React
           update each paragraph's text in place instead of remounting it. That
           makes index keys both collision-proof and simpler than deriving a key
-          from content that a gift recipient is expected to rewrite.
+          from content that is expected to be rewritten.
         */}
         {paragraphs.map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
+          <p key={index}>
+            <EmphasisedText>{paragraph}</EmphasisedText>
+          </p>
         ))}
       </div>
     </article>

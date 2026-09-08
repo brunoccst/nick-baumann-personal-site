@@ -2,25 +2,22 @@
 
 Roughly in the order they would naturally happen.
 
-1. **Choose the visual style, then rewrite `src/styles/_tokens.scss` and the
-   component stylesheets.** Class names and DOM structure stay stable — see
-   the restyle contract in `docs/DECISIONS.md`. Decide at this point whether
-   Material UI stays for the two icon buttons in `SystemControls`, or is
-   replaced with hand-rolled buttons; either is reasonable.
+1. **Redraw the favicon (`personal-site.web/public/favicon.svg`)** to match the
+   blueprint styling. It is still a plain "NB" monogram from before the theme
+   existed.
 
-2. **Replace the placeholder Links** in `en.json` and `de.json` with real
-   profile URLs, or delete the entries that don't apply. Everything else is
-   already Nick's own content. Do not add a personal email address, phone
-   number or home address — see `docs/KNOWN-ISSUES.md` for why.
+2. **Add further links** in `en.json` and `de.json` if other public profiles
+   appear. Do not add a personal email address, phone number or home address —
+   see `docs/KNOWN-ISSUES.md` for why.
 
-3. **Replace the favicon (`personal-site.web/public/favicon.svg`) and the
-   `<meta name="description">` in `personal-site.web/index.html`** once a
-   visual style and real copy exist to describe.
+3. **Decide whether Material UI stays.** It serves only the two icon buttons
+   in `SystemControls`, and `createAppTheme.ts` already overrides its styling
+   by hand. Hand-rolled buttons would drop `@mui/*` and both `@emotion/*`
+   packages.
 
-4. **Transfer the GitHub repository** to the recipient's account once it
-   exists. A transfer preserves history, issues and stars.
+4. **Transfer the GitHub repository** to Nick's account once it exists. A transfer preserves history, issues and stars.
 
-5. **Transfer the Netlify project**, or have the recipient link their own
+5. **Transfer the Netlify project**, or have Nick link his own
    Netlify account to the repository and point a custom domain at it.
 
 6. **Optional: add a GitHub Actions workflow** running `npm ci`,
