@@ -1,12 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="0" fill="#121212" />
-  <text
-    x="16"
-    y="22"
-    font-family="ui-sans-serif, system-ui, sans-serif"
-    font-size="16"
-    font-weight="600"
-    fill="#ededed"
-    text-anchor="middle"
-  >NB</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#08304d" />
+  <g fill="none" stroke="#a5dbfa" stroke-width="3" stroke-linecap="round">
+    <path d="M8 11v42" />
+    <path d="M10.2 11 24.6 53" />
+    <path d="M13.6 11 28 53" />
+    <path d="M32 11v42" />
+    <path d="M32 11a22 10.5 0 0 1 0 21" />
+    <path d="M32 16.25a17 5.25 0 0 1 0 10.5" />
+    <path d="M32 32a24 10.5 0 0 1 0 21" />
+    <path d="M32 37.25a19 5.25 0 0 1 0 10.5" />
+  </g>
 </svg>
