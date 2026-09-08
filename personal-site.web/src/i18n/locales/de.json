@@ -5,12 +5,13 @@
   },
   "identity": {
     "name": "Nick Baumann",
-    "role": "Lorem Ipsum Dolor Sit Amet"
+    "role": "Mechatroniktechniker"
   },
   "nav": {
     "label": "Seitenbereiche",
     "about": "Über mich",
     "experience": "Erfahrung",
+    "education": "Bildungsweg",
     "links": "Links"
   },
   "controls": {
@@ -25,101 +26,102 @@
     "skipToContent": "Zum Inhalt springen",
     "opensInNewTab": "(wird in einem neuen Tab geöffnet)",
     "sectionAnnouncement": "Bereich {{section}}",
-    "pageTitle": "{{section}} — Nick Baumann"
+    "pageTitle": "Nick Baumann"
   },
   "footer": {
-    "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    "note": "© 2026 Nick Baumann"
   },
   "sections": {
     "about": {
       "title": "Über mich",
-      "kicker": "Lorem ipsum",
+      "kicker": "Bayern, Deutschland",
       "paragraphs": [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+        "Ich bin Mechatroniker und arbeite als Monteur bei der RATIONAL AG in Landsberg am Lech. Im Juli 2026 habe ich meine Weiterbildung zum staatlich geprüften Mechatroniktechniker abgeschlossen.",
+        "Durch meine Ausbildung und die anschließende Tätigkeit in der Fertigung konnte ich praktische Erfahrung in einem technischen Umfeld sammeln. Dabei habe ich ein gutes Verständnis für technische Abläufe entwickelt und gelernt, Probleme praktisch und lösungsorientiert anzugehen.",
+        "Während meiner Weiterbildung habe ich meine Kenntnisse in Mechanik, Elektronik und Steuerungstechnik vertieft. Besonders die Kombination aus theoretischem Wissen und praktischer Anwendung macht mir Freude: technische Zusammenhänge zu verstehen, Fehler zu suchen und passende Lösungen zu finden, gehört zu meinen Stärken.",
+        "Privat bin ich sportlich aktiv und verbringe meine Freizeit gerne im Fitnessstudio. Mechatronik und Automatisierung interessieren mich auch außerhalb der Arbeit — zum Beispiel bei der technischen Weiterentwicklung und Steuerung eines Kleinwasserkraftwerks in meiner Familie."
       ]
     },
     "experience": {
       "title": "Erfahrung",
-      "kicker": "Lorem — ipsum",
+      "kicker": "2019 — heute",
       "items": [
         {
-          "period": "Lorem 2022 — heute",
-          "role": "Lorem Ipsum Engineer",
-          "organisation": "Dolor Sit GmbH",
-          "location": "Lorem",
-          "summary": "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam.",
+          "period": "Feb 2023 — heute",
+          "role": "Monteur",
+          "organisation": "RATIONAL AG",
+          "location": "Landsberg am Lech",
+          "summary": "Montage verschiedener Baugruppen und Komponenten sowie Durchführung von Fehlersuche und -behebung.",
+          "stack": []
+        },
+        {
+          "period": "Sep 2019 — Feb 2023",
+          "role": "Ausbildung zum Mechatroniker",
+          "organisation": "RATIONAL AG",
+          "location": "Landsberg am Lech",
+          "summary": "Ausbildung im dualen System, begleitet von der Berufsschule in Landsberg am Lech.",
+          "stack": []
+        }
+      ]
+    },
+    "education": {
+      "title": "Bildungsweg",
+      "kicker": "2013 — 2026",
+      "items": [
+        {
+          "period": "Sep 2024 — Jul 2026",
+          "role": "Staatlich geprüfter Mechatroniktechniker",
+          "organisation": "Technikerschule Augsburg",
+          "location": "Augsburg",
+          "summary": "Mechatronik, Robotik und Automatisierungstechnik, abgeschlossen mit der Fachhochschulreife.",
           "stack": [
-            "Lorem",
-            "Ipsum",
-            "Dolor",
-            "Sit Amet",
-            "Consectetur",
-            "Adipiscing",
-            "Elit",
-            "Tempor"
+            "C++",
+            "C",
+            "CAD / Inventor",
+            "Siemens TIA Portal",
+            "Robotik"
           ]
         },
         {
-          "period": "Lorem 2019 — Lorem 2022",
-          "role": "Dolor Sit Developer",
-          "organisation": "Amet Consectetur AG",
-          "location": "Ipsum",
-          "summary": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute.",
-          "stack": [
-            "Incididunt",
-            "Labore",
-            "Dolore",
-            "Magna",
-            "Aliqua",
-            "Veniam",
-            "Nostrud",
-            "Ullamco"
-          ]
+          "period": "Sep 2019 — Feb 2023",
+          "role": "Ausbildung zum Mechatroniker",
+          "organisation": "Staatl. Berufsschule Landsberg a. Lech",
+          "location": "Landsberg am Lech",
+          "summary": "Berufsschulteil der Ausbildung zum Mechatroniker.",
+          "stack": []
         },
         {
-          "period": "Lorem 2017 — Lorem 2019",
-          "role": "Adipiscing Associate",
-          "organisation": "Elit Sed Do",
-          "location": "Dolor",
-          "summary": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-          "stack": [
-            "Laboris",
-            "Aliquip",
-            "Commodo",
-            "Consequat",
-            "Reprehenderit",
-            "Voluptate",
-            "Cillum",
-            "Pariatur"
-          ]
+          "period": "Sep 2013 — Sep 2019",
+          "role": "Mittlere Reife",
+          "organisation": "Mittelschule Landsberg",
+          "location": "Landsberg am Lech",
+          "summary": "Mittlerer Schulabschluss.",
+          "stack": []
         }
       ]
     },
     "links": {
       "title": "Links",
-      "kicker": "Lorem ipsum dolor",
+      "kicker": "Platzhalter — noch zu ersetzen",
       "items": [
         {
           "label": "GitHub",
-          "description": "Lorem ipsum dolor sit amet consectetur.",
+          "description": "Platzhalter-Link. Durch ein echtes Profil ersetzen.",
           "href": "https://github.com/"
         },
         {
           "label": "LinkedIn",
-          "description": "Adipiscing elit sed do eiusmod tempor.",
+          "description": "Platzhalter-Link. Durch ein echtes Profil ersetzen.",
           "href": "https://www.linkedin.com/"
         },
         {
           "label": "Mastodon",
-          "description": "Incididunt ut labore et dolore magna.",
+          "description": "Platzhalter-Link. Ersetzen oder entfernen.",
           "href": "https://mastodon.social/"
         },
         {
           "label": "E-Mail",
-          "description": "Aliqua ut enim ad minim veniam quis.",
+          "description": "Platzhalter-Adresse. Durch eine echte ersetzen.",
           "href": "mailto:hello@example.com"
         }
       ]

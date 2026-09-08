@@ -16,6 +16,11 @@ export function Layout() {
   const currentSection = findSectionByPath(pathname);
   const sectionLabel = t(currentSection.labelKey);
 
+  // `a11y.pageTitle` is currently just the name, so the tab reads the same on
+  // every route. The section is still passed in, so putting `{{section}}` back
+  // into the locale files is the only change needed to restore a per-page
+  // title. Screen readers are told about the change either way, by the live
+  // region at the bottom of this component.
   useDocumentTitle(t('a11y.pageTitle', { section: sectionLabel }));
 
   return (

@@ -5,6 +5,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout/Layout';
 import { DEFAULT_SECTION, SECTIONS, type SectionId } from './config/sections';
 import AboutSection from './sections/AboutSection';
+import EducationSection from './sections/EducationSection';
 import ExperienceSection from './sections/ExperienceSection';
 import LinksSection from './sections/LinksSection';
 
@@ -12,6 +13,7 @@ import LinksSection from './sections/LinksSection';
 const SECTION_COMPONENTS: Record<SectionId, ComponentType> = {
   about: AboutSection,
   experience: ExperienceSection,
+  education: EducationSection,
   links: LinksSection,
 };
 

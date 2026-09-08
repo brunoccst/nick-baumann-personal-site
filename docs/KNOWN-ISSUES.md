@@ -9,17 +9,23 @@ site was built, and finishing the structure first meant the eventual style
 could be applied without fighting anything already in place. See
 `docs/DECISIONS.md` for the reasoning and the restyle contract.
 
-## Body copy is Lorem Ipsum; the interface text is real
+## The Links section is still placeholder
 
-The About paragraphs, the Experience summaries and stack tags, the link
-descriptions, the section kickers, `identity.role`, and `footer.note` are
-placeholder Latin text in both `en.json` and `de.json` — that is the body
-copy, and it is expected to be filler. Navigation labels, control labels,
-accessibility strings, section titles and link labels are real text in both
-locales, not Lorem Ipsum, because Lorem Ipsum would break them rather than
-stand in for them. The recipient replaces the body copy with his own words;
-`docs/NEXT-STEPS.md` and the README's "Translations" section say exactly
-what to edit.
+Everything else on the site is real content, taken from Nick's CV and
+application letter. The four entries in the Links section are not: they point
+at `https://github.com/`, `https://www.linkedin.com/`,
+`https://mastodon.social/` and `mailto:hello@example.com`, because no real
+profile URLs were available. Each description says it is a placeholder, so a
+visitor is not misled, but the links go nowhere useful. Replace them or delete
+the entries that don't apply — see `docs/NEXT-STEPS.md`.
+
+## Personal data is deliberately absent
+
+The CV and application letter the content came from contain a home address, a
+mobile number, a personal email address, a date and place of birth, a
+nationality and a final grade. None of it was published, and none of it should
+be added without asking Nick first. If you add a contact link, prefer a form or
+an address he is willing to see scraped.
 
 ## `npm install` crashes on the npm version bundled with recent Node 22 installers
 

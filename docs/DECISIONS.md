@@ -50,29 +50,30 @@ on specificity. Dropping MUI for two hand-rolled `<button>` elements remains
 a reasonable option, and would remove `@emotion/react` and
 `@emotion/styled` as well.
 
-## Why the copy is Lorem Ipsum
+## Where the content came from, and what was left out
 
-The site is a gift. The recipient — Nick — writes the words that describe
-his own work and experience; nobody else can write them for him. Lorem
-Ipsum holds each section at a realistic size (four About paragraphs, three
-Experience entries with eight stack tags each, four Links) so the layout is
-tuned to content of the right shape and length, not to text that will never
-exist.
+The site shipped with Lorem Ipsum, because nobody else can write a person's
+own words for him. It was later replaced with real content taken from two
+documents Nick wrote himself: his CV (`Lebenslauf`) and a job application
+letter (`Bewerbungsanschreiben`).
 
-The split between placeholder and real text follows one rule: **Lorem Ipsum
-stands in for body copy; interface text is real**, because Lorem Ipsum would
-break interface text rather than stand in for it. A navigation item labelled
-"Lorem" cannot be navigated, and a screen reader announcing "Ipsum section"
-tells its listener nothing.
+The About paragraphs are his own "Über mich" text plus the self-description
+from his letter, with everything specific to that application removed — the
+company he was writing to, the person he addressed, and the role he was
+applying for have no place on his own site. The Experience summaries are the
+duties listed on his CV. The Education entries are his CV's `Bildungsweg`,
+which is why the site lists a third school the LinkedIn profile does not.
 
-Lorem Ipsum: the About paragraphs, the Experience summaries and stack tags,
-the link descriptions, the section kickers, `identity.role`, and
-`footer.note`.
+**Deliberately not published.** The source documents contain a home address,
+a mobile number, a personal email address, a date and place of birth, a
+nationality and a final grade. None of that is in this repository, and none
+of it should be added later without asking him. A personal site is a wider
+audience than a job application, and contact details on a public page invite
+scraping.
 
-Real: the navigation labels, the control labels and accessibility strings,
-the section titles, the link labels (`GitHub`, `LinkedIn`, and so on),
-`identity.name` ("Nick Baumann"), the link `href` values, and each locale's
-`meta.htmlLang` and `meta.nativeName`.
+What remains placeholder is the Links section: four `href` values pointing at
+site roots and an `example.com` address, each with a description saying so.
+Real profile URLs were not available. `docs/NEXT-STEPS.md` tracks it.
 
 ## Why the `localStorage` keys are `nick-baumann-site.*`
 

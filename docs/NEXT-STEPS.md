@@ -8,10 +8,10 @@ Roughly in the order they would naturally happen.
    Material UI stays for the two icon buttons in `SystemControls`, or is
    replaced with hand-rolled buttons; either is reasonable.
 
-2. **Replace the Lorem Ipsum in `en.json` and `de.json`**, and the
-   placeholder `href` values in the Links section, with the recipient's own
-   words and real profile links. The README's "Translations" section lists
-   exactly which keys are body copy and which are interface text.
+2. **Replace the placeholder Links** in `en.json` and `de.json` with real
+   profile URLs, or delete the entries that don't apply. Everything else is
+   already Nick's own content. Do not add a personal email address, phone
+   number or home address — see `docs/KNOWN-ISSUES.md` for why.
 
 3. **Replace the favicon (`personal-site.web/public/favicon.svg`) and the
    `<meta name="description">` in `personal-site.web/index.html`** once a

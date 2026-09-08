@@ -1,4 +1,4 @@
-export type SectionId = 'about' | 'experience' | 'links';
+export type SectionId = 'about' | 'experience' | 'education' | 'links';
 
 export interface SectionDefinition {
   id: SectionId;
@@ -12,6 +12,7 @@ export interface SectionDefinition {
 export const SECTIONS: readonly SectionDefinition[] = [
   { id: 'about', path: '/about', labelKey: 'nav.about' },
   { id: 'experience', path: '/experience', labelKey: 'nav.experience' },
+  { id: 'education', path: '/education', labelKey: 'nav.education' },
   { id: 'links', path: '/links', labelKey: 'nav.links' },
 ] as const;
 
