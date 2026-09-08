@@ -27,6 +27,23 @@ stable, and every value in `_tokens.scss` and every rule in a `*.module.scss`
 file is replaceable without touching a component or disturbing the router,
 the translations or the accessibility behaviour.
 
+## The favicon
+
+`public/favicon.svg` is an "NB" monogram drawn to match a supplied reference:
+monoline strokes with rounded caps, a stem shared between the two letters, and
+the doubled diagonals and doubled bowls that give the mark its character. It is
+drawn with the same eight `<path>` elements the reference implies rather than
+traced, so the geometry is editable.
+
+It uses the site's own colours — `#a5dbfa` on `#08304d`, 9.16:1 — rather than
+the reference's dark-blue-on-paper, and the background is a full-bleed square
+because the rest of the design has no border radii.
+
+The doubled strokes are the point of the mark, so they were kept even though
+they crowd at 16px. It reads cleanly from 24px up, which covers every browser
+tab on a modern display; a simplified single-stroke variant would be the
+answer if 16px legibility ever matters more than fidelity.
+
 ## Why the architecture came from `brunoccst/personal-site`
 
 `brunoccst/personal-site` is a proven arrangement for exactly this kind of

@@ -75,8 +75,3 @@ The GitHub repository `brunoccst/nick-baumann-personal-site` and the Netlify
 project `nick-baumann` both live under the `brunoccst` account and team,
 because Nick's GitHub account did not exist when the site was built. Both
 still need transferring. `docs/NEXT-STEPS.md` lists the steps.
-
-## The favicon does not match the styling
-
-`public/favicon.svg` is a plain "NB" monogram on a flat dark background. It
-predates the blueprint styling and does not reflect it.
