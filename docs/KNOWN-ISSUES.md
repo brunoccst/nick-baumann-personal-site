@@ -84,14 +84,13 @@ real person's profile: `https://github.com/`, `https://www.linkedin.com/`,
 `https://mastodon.social/`, and a `mailto:hello@example.com` that nobody
 reads. These are meant to be replaced — see `docs/NEXT-STEPS.md`.
 
-## The repository and hosting are to be owned by `brunoccst`, not the recipient
+## The repository and hosting are owned by `brunoccst`, not the recipient
 
-The repository has no remote yet and the site is not deployed. Once
-published, both the GitHub repository and the Netlify project are to be
-created under the `brunoccst` account/team, because the recipient's GitHub
-account did not exist when the site was built, and transferred to him
-later. `docs/DECISIONS.md` explains why, and `docs/NEXT-STEPS.md` lists the
-transfer steps.
+The GitHub repository `brunoccst/nick-baumann-personal-site` and the Netlify
+project `nick-baumann` both live under the `brunoccst` account and team,
+because the recipient's GitHub account did not exist when the site was
+built. Both still need transferring to him. `docs/DECISIONS.md` explains
+why it was done this way, and `docs/NEXT-STEPS.md` lists the transfer steps.
 
 ## The favicon is a placeholder monogram
 

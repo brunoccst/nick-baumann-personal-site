@@ -1,5 +1,9 @@
 # Nick Baumann — personal site
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ef3706c3-dd77-431a-8f8a-23021d199349/deploy-status)](https://app.netlify.com/sites/nick-baumann/deploys)
+
+Live at [nick-baumann.netlify.app](https://nick-baumann.netlify.app).
+
 A personal site built as a gift for Nick Baumann. The structure, routing,
 theming, translations and accessibility are finished. The visual style is
 deliberately unfinished: it had not been chosen when the site was built, so
@@ -254,8 +258,10 @@ reproducible from the repository alone:
 - `X-Content-Type-Options`, `X-Frame-Options` and `Referrer-Policy` headers,
   and a one-year immutable cache on `/assets/*`.
 
-The site is not deployed yet. Once the Netlify project is created, its name
-and live URL will be recorded here.
+The Netlify project is named `nick-baumann` and serves the site at
+[nick-baumann.netlify.app](https://nick-baumann.netlify.app). It builds from
+`main`; pushing to `main` triggers a deploy, and every pull request gets its
+own preview build.
 
 ## Licence
 
