@@ -3,7 +3,7 @@
 Date: 2026-09-08.
 
 A personal site for a friend, given as a gift. It reuses the architecture of
-[brunoccst/portfolio](https://github.com/brunoccst/portfolio) and replaces its
+[brunoccst/personal-site](https://github.com/brunoccst/personal-site) and replaces its
 visual layer with nothing, so the eventual style can be chosen later without
 fighting anything already there.
 
@@ -26,7 +26,7 @@ Two audiences read this repository:
 - Choosing colours, typography, layout ornament or motion. That is a later,
   separate piece of work.
 - Server rendering, a backend, a CMS, or analytics.
-- Porting the frame, intro animation or scroll navigation from `portfolio`.
+- Porting the frame, intro animation or scroll navigation from `brunoccst/personal-site`.
 
 ---
 
@@ -36,11 +36,11 @@ Two audiences read this repository:
 | --- | --- |
 | Repository owner | `brunoccst/nick-baumann-personal-site`. The GitHub account `nick-baumann` does not exist, so the repo is created under the author's account and transferred once it does. |
 | Style scope | Both design tokens and visual structure are left undecided. Build a neutral shell. |
-| Styling mechanism | SCSS + CSS Modules, as in `portfolio`. Neutrality comes from writing less CSS, not from a different mechanism. |
-| Material UI | Kept, for parity with `portfolio`. |
+| Styling mechanism | SCSS + CSS Modules, as in `brunoccst/personal-site`. Neutrality comes from writing less CSS, not from a different mechanism. |
+| Material UI | Kept, for parity with `brunoccst/personal-site`. |
 | Languages | English and German. |
 | Hosting | Netlify, configured by `netlify.toml`, project created under the `brunoccst` Netlify team. |
-| CI | None, mirroring `portfolio`. Netlify's deploy previews build every pull request. |
+| CI | None, mirroring `brunoccst/personal-site`. Netlify's deploy previews build every pull request. |
 | Tests | Vitest, with a small suite over section lookup and locale-file shape. |
 
 ---
@@ -62,9 +62,11 @@ nick-baumann-personal-site/
 └── personal-site.web/          The React application
 ```
 
-The application folder is named `personal-site.web`, following the
-`<project>.web` convention of `portfolio.web`. `netlify.toml` sets it as the
-build base, so the name is load-bearing: changing it means changing that file.
+The application folder is named `personal-site.web`, following the `<project>.web`
+convention that `brunoccst/personal-site` uses. It matches the end state: after
+the transfer this repository is `nick-baumann/personal-site`, so the folder name
+lines up with the repository name. `netlify.toml` sets it as the build base, so
+the name is load-bearing — changing it means changing that file.
 
 ## Application layout
 
@@ -107,7 +109,7 @@ personal-site.web/
         └── themeContext.ts
 ```
 
-`Nav` replaces `portfolio`'s `SideNav`; the name no longer promises a side.
+`Nav` replaces `brunoccst/personal-site`'s `SideNav`; the name no longer promises a side.
 `ContentPanel` and `Intro` have no counterpart.
 
 ---
@@ -128,7 +130,7 @@ and nothing else, so it cannot disagree with the router.
 **`SystemControls`** renders two MUI `IconButton`s inside `Tooltip`s: one toggles
 theme, one toggles language. Both carry an `aria-label` from the locale files.
 
-**Sections** keep the data shapes from `portfolio` exactly:
+**Sections** keep the data shapes from `brunoccst/personal-site` exactly:
 
 | Section | Shape |
 | --- | --- |
@@ -196,8 +198,14 @@ DOM structure are stable; every value in `_tokens.scss` and every rule in a
 
 `AppThemeProvider` writes `data-theme="light"` or `data-theme="dark"` onto
 `<html>`, mirrors the mode into a MUI theme for the two icon buttons, and
-persists the choice to `localStorage` under `personal-site.theme`. With no saved
-value it follows `prefers-color-scheme`.
+persists the choice to `localStorage` under `nick-baumann-site.theme`. With no
+saved value it follows `prefers-color-scheme`.
+
+The keys are `nick-baumann-site.theme` and `nick-baumann-site.language`, not
+`personal-site.*`. `brunoccst/personal-site` already uses the `personal-site.*`
+keys, and both projects' dev servers default to `http://localhost:5173` — the
+same origin, and therefore the same `localStorage`. Identical keys would make the
+two sites overwrite each other's saved theme and language during development.
 
 ---
 
@@ -205,7 +213,7 @@ value it follows `prefers-color-scheme`.
 
 `en.json` is the default and the fallback. `de.json` mirrors its shape; a missing
 key falls back to English. The starting language is chosen from
-`localStorage['personal-site.language']`, then the browser's languages, then
+`localStorage['nick-baumann-site.language']`, then the browser's languages, then
 English.
 
 All copy is Lorem Ipsum, in realistic quantities: four About paragraphs, three
@@ -221,7 +229,7 @@ Three values are real rather than Lorem, because Lorem would break them:
 
 ## Accessibility
 
-Carried over from `portfolio` in full:
+Carried over from `brunoccst/personal-site` in full:
 
 - A skip link is first in the tab order and targets `#content`.
 - `NavLink` sets `aria-current="page"` on the active section.
