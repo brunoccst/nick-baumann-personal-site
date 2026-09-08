@@ -1,0 +1,11 @@
+// Sass-level constants, resolved at build time. Values that change at runtime
+// (colours, spacing) are CSS custom properties in `_tokens.scss` instead.
+
+// Breakpoint widths in pixels.
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+
+// Stacking order.
+$z-header: 10;
+$z-skip-link: 1000;
