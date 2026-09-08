@@ -11,10 +11,15 @@ the CSS you'll find here is a plain, neutral baseline, not a design. Whoever
 picks the style later starts from a clean slate rather than fighting existing
 decisions.
 
-The body copy throughout the site — the About paragraphs, the Experience
-entries, the link descriptions — is Lorem Ipsum. It is there to hold the
-layout at a realistic size until the recipient replaces it with their own
-words. See "Translations" below for exactly what is safe to edit.
+The content is real: the About paragraphs, the work history and the education
+history come from Nick's own CV and application letter. Only the Links section
+is still placeholder — its four entries point at site roots and an
+`example.com` address, waiting for real profile URLs. See "Translations" below
+for where the words live.
+
+Nothing sensitive is published here on purpose. Home address, phone number,
+personal email, date and place of birth, nationality and school grades were all
+deliberately left out of the source material.
 
 ## Requirements
 
@@ -109,7 +114,9 @@ personal-site.web/
     │   └── SystemControls/     Theme and language buttons
     ├── sections/
     │   ├── AboutSection.tsx
+    │   ├── TimelineSection.tsx  Shared renderer for dated entry lists
     │   ├── ExperienceSection.tsx
+    │   ├── EducationSection.tsx
     │   ├── LinksSection.tsx
     │   └── Section.module.scss
     ├── config/sections.ts      The ordered section list
@@ -150,6 +157,7 @@ Every route is generated from a single array, `src/config/sections.ts`:
 export const SECTIONS: readonly SectionDefinition[] = [
   { id: 'about',      path: '/about',      labelKey: 'nav.about' },
   { id: 'experience', path: '/experience', labelKey: 'nav.experience' },
+  { id: 'education',  path: '/education',  labelKey: 'nav.education' },
   { id: 'links',      path: '/links',      labelKey: 'nav.links' },
 ] as const;
 ```
@@ -161,7 +169,7 @@ other.
 | URL | Result |
 | --- | --- |
 | `/` | Redirect to `/about` |
-| `/about`, `/experience`, `/links` | The matching section |
+| `/about`, `/experience`, `/education`, `/links` | The matching section |
 | anything else | Redirect to `/about` |
 
 ## Styling
@@ -207,19 +215,21 @@ To add a translation key:
 3. Call `t('the.new.key')` (or `useTranslatedList` for a list) from the
    component.
 
-### What to edit if you're replacing the placeholder copy
+### What is still a placeholder
 
-Body copy is Lorem Ipsum and is meant to be replaced: the About paragraphs,
-the Experience summaries and stack tags, the link descriptions, the section
-kickers, `identity.role`, and `footer.note`.
+Only the Links section. Its four entries carry placeholder `href` values —
+`https://github.com/`, `https://www.linkedin.com/`, `https://mastodon.social/`
+and `mailto:hello@example.com` — and descriptions that say so. Replace the URLs
+with real ones, or delete the entries that don't apply.
 
-Interface text is already real, because Lorem Ipsum would break it rather
-than stand in for it — a navigation item labelled "Lorem" cannot be
-navigated. This includes the navigation labels, the control labels and
-accessibility strings, the section titles, the link labels (`GitHub`,
-`LinkedIn`, and so on), `identity.name`, the link `href` values, and each
-locale's `meta.htmlLang` / `meta.nativeName`. None of that needs to change
-to remove the placeholder feel — only the Lorem Ipsum body copy does.
+Everything else is real content, taken from Nick's CV and application letter:
+the About paragraphs, both Experience entries with their duties, all three
+Education entries, the section kickers, `identity.role` and `footer.note`.
+
+**Deliberately not published**, and not to be added later without asking him:
+home address, phone number, personal email address, date and place of birth,
+nationality, and school grades. All of those appear in the source documents and
+were left out on purpose.
 
 ## Adding a section
 

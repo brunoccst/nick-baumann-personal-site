@@ -3,10 +3,11 @@ import { describe, expect, it } from 'vitest';
 import { DEFAULT_SECTION, SECTIONS, findSectionByPath } from './sections';
 
 describe('SECTIONS', () => {
-  it('lists about, experience and links in that order', () => {
+  it('lists about, experience, education and links in that order', () => {
     expect(SECTIONS.map((section) => section.id)).toEqual([
       'about',
       'experience',
+      'education',
       'links',
     ]);
   });
