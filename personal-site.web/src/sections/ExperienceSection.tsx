@@ -23,8 +23,8 @@ export default function ExperienceSection() {
       <h2 className={styles.title}>{t('sections.experience.title')}</h2>
 
       <ol className={styles.list}>
-        {items.map((item) => (
-          <li key={`${item.period}-${item.role}`} className={styles.entry}>
+        {items.map((item, index) => (
+          <li key={index} className={styles.entry}>
             <span className={styles.period}>
               {item.period}
               <span className={styles.separator} aria-hidden="true">
@@ -38,8 +38,8 @@ export default function ExperienceSection() {
             <p className={styles.summary}>{item.summary}</p>
 
             <ul className={styles.stack}>
-              {item.stack.map((tech) => (
-                <li key={tech} className={styles.tag}>
+              {item.stack.map((tech, techIndex) => (
+                <li key={techIndex} className={styles.tag}>
                   {tech}
                 </li>
               ))}

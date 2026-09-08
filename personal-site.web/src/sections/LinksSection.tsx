@@ -24,11 +24,11 @@ export default function LinksSection() {
       <h2 className={styles.title}>{t('sections.links.title')}</h2>
 
       <ul className={styles.list}>
-        {items.map((item) => {
+        {items.map((item, index) => {
           const external = isExternal(item.href);
 
           return (
-            <li key={item.href + item.label}>
+            <li key={index}>
               <a
                 className={styles.link}
                 href={item.href}
