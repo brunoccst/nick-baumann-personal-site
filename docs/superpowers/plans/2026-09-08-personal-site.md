@@ -1979,8 +1979,17 @@ export default function AboutSection() {
       <h2 className={styles.title}>{t('sections.about.title')}</h2>
 
       <div className={styles.prose}>
-        {paragraphs.map((paragraph) => (
-          <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+        {/*
+          Keyed by index: this list (and the other section lists) is static and
+          ordered — nothing reorders, filters, inserts into or removes from it at
+          runtime, and no item carries per-item state. The only time the list
+          changes wholesale is a language switch, where an index key lets React
+          update each paragraph's text in place instead of remounting it. That
+          makes index keys both collision-proof and simpler than deriving a key
+          from content that a gift recipient is expected to rewrite.
+        */}
+        {paragraphs.map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
         ))}
       </div>
     </article>
@@ -2016,8 +2025,8 @@ export default function ExperienceSection() {
       <h2 className={styles.title}>{t('sections.experience.title')}</h2>
 
       <ol className={styles.list}>
-        {items.map((item) => (
-          <li key={`${item.period}-${item.role}`} className={styles.entry}>
+        {items.map((item, index) => (
+          <li key={index} className={styles.entry}>
             <span className={styles.period}>
               {item.period}
               <span className={styles.separator} aria-hidden="true">
@@ -2031,8 +2040,8 @@ export default function ExperienceSection() {
             <p className={styles.summary}>{item.summary}</p>
 
             <ul className={styles.stack}>
-              {item.stack.map((tech) => (
-                <li key={tech} className={styles.tag}>
+              {item.stack.map((tech, techIndex) => (
+                <li key={techIndex} className={styles.tag}>
                   {tech}
                 </li>
               ))}
@@ -2074,11 +2083,11 @@ export default function LinksSection() {
       <h2 className={styles.title}>{t('sections.links.title')}</h2>
 
       <ul className={styles.list}>
-        {items.map((item) => {
+        {items.map((item, index) => {
           const external = isExternal(item.href);
 
           return (
-            <li key={item.href + item.label}>
+            <li key={index}>
               <a
                 className={styles.link}
                 href={item.href}
