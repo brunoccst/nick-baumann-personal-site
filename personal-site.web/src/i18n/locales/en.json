@@ -36,7 +36,7 @@
       "title": "About",
       "kicker": "Bavaria, Germany",
       "paragraphs": [
-        "I am a mechatronics technician working as a Monteur at RATIONAL AG in Landsberg am Lech. In July 2026 I completed my further training as a staatlich geprüfter Mechatroniktechniker.",
+        "I am a mechatronics technician working as a *Monteur* (assembly technician) at RATIONAL AG in Landsberg am Lech. In July 2026 I completed my further training as a *staatlich geprüfter Mechatroniktechniker* (state-certified mechatronics technician).",
         "My apprenticeship and the production work that followed gave me hands-on experience in a technical environment. I developed a solid understanding of technical processes and learned to approach problems practically, with an eye for workable solutions.",
         "During my further training I deepened my knowledge of mechanics, electronics and control engineering. I particularly enjoy combining theory with practical application: understanding how things fit together, tracking down faults and finding the right fix are among my strengths.",
         "Away from work I am sporty and spend much of my free time at the gym. Mechatronics and automation interest me privately too — for example in the technical development and control of a small hydroelectric plant in my family."
@@ -48,7 +48,7 @@
       "items": [
         {
           "period": "Feb 2023 — Present",
-          "role": "Monteur",
+          "role": "*Monteur* (assembly technician)",
           "organisation": "RATIONAL AG",
           "location": "Landsberg am Lech",
           "summary": "Assembly of a range of modules and components, together with fault finding and repair.",
@@ -56,7 +56,7 @@
         },
         {
           "period": "Sep 2019 — Feb 2023",
-          "role": "Ausbildung zum Mechatroniker",
+          "role": "*Ausbildung zum Mechatroniker* (apprenticeship as a mechatronics technician)",
           "organisation": "RATIONAL AG",
           "location": "Landsberg am Lech",
           "summary": "Mechatronics apprenticeship under the German dual system, alongside the vocational school in Landsberg am Lech.",
@@ -70,10 +70,10 @@
       "items": [
         {
           "period": "Sep 2024 — Jul 2026",
-          "role": "Staatlich geprüfter Mechatroniktechniker",
+          "role": "*Staatlich geprüfter Mechatroniktechniker* (state-certified mechatronics technician)",
           "organisation": "Technikerschule Augsburg",
           "location": "Augsburg",
-          "summary": "Mechatronics, robotics and automation engineering, completed together with the Fachhochschulreife.",
+          "summary": "Mechatronics, robotics and automation engineering, completed together with the *Fachhochschulreife* (entrance qualification for a university of applied sciences).",
           "stack": [
             "C++",
             "C",
@@ -84,7 +84,7 @@
         },
         {
           "period": "Sep 2019 — Feb 2023",
-          "role": "Ausbildung zum Mechatroniker",
+          "role": "*Ausbildung zum Mechatroniker* (apprenticeship as a mechatronics technician)",
           "organisation": "Staatl. Berufsschule Landsberg a. Lech",
           "location": "Landsberg am Lech",
           "summary": "Vocational school half of the mechatronics apprenticeship.",
@@ -92,7 +92,7 @@
         },
         {
           "period": "Sep 2013 — Sep 2019",
-          "role": "Mittlere Reife",
+          "role": "*Mittlere Reife* (intermediate school-leaving certificate)",
           "organisation": "Mittelschule Landsberg",
           "location": "Landsberg am Lech",
           "summary": "Secondary school leaving certificate.",
@@ -102,27 +102,12 @@
     },
     "links": {
       "title": "Links",
-      "kicker": "Placeholder — to be replaced",
+      "kicker": "Elsewhere",
       "items": [
         {
-          "label": "GitHub",
-          "description": "Placeholder link. Replace with a real profile URL.",
-          "href": "https://github.com/"
-        },
-        {
           "label": "LinkedIn",
-          "description": "Placeholder link. Replace with a real profile URL.",
-          "href": "https://www.linkedin.com/"
-        },
-        {
-          "label": "Mastodon",
-          "description": "Placeholder link. Replace or remove.",
-          "href": "https://mastodon.social/"
-        },
-        {
-          "label": "Email",
-          "description": "Placeholder address. Replace with a real one.",
-          "href": "mailto:hello@example.com"
+          "description": "Professional profile and work history.",
+          "href": "https://www.linkedin.com/in/nick-baumann-23884842b/"
         }
       ]
     }

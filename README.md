@@ -4,22 +4,18 @@
 
 Live at [nick-baumann.netlify.app](https://nick-baumann.netlify.app).
 
-A personal site built as a gift for Nick Baumann. The structure, routing,
-theming, translations and accessibility are finished. The visual style is
-deliberately unfinished: it had not been chosen when the site was built, so
-the CSS you'll find here is a plain, neutral baseline, not a design. Whoever
-picks the style later starts from a clean slate rather than fighting existing
-decisions.
+The personal site of Nick Baumann, a mechatronics technician in Bavaria. Four
+sections — about, experience, education and links — in English and German,
+with a light and a dark theme.
 
-The content is real: the About paragraphs, the work history and the education
-history come from Nick's own CV and application letter. Only the Links section
-is still placeholder — its four entries point at site roots and an
-`example.com` address, waiting for real profile URLs. See "Translations" below
-for where the words live.
+It is styled as a technical drawing: an exploded mechatronic assembly, drawn
+as inline SVG, sits fixed behind the page. The light theme is blueprint blue,
+the dark theme is black, and both carry the same line art.
 
-Nothing sensitive is published here on purpose. Home address, phone number,
-personal email, date and place of birth, nationality and school grades were all
-deliberately left out of the source material.
+**Do not publish personal data here.** Home address, phone number, personal
+email address, date and place of birth, nationality and school grades are all
+absent by design. A public page is a wider audience than a job application,
+and contact details on one invite scraping.
 
 ## Requirements
 
@@ -70,28 +66,27 @@ Run from `personal-site.web`:
 | `npm run typecheck` | Type-checks without emitting (`tsc -b --noEmit`) |
 | `npm test` | Runs the test suite once (`vitest run`) |
 
-The test suite has 12 tests: 7 in `src/config/sections.test.ts` (section
-ordering, path uniqueness, and route fallback) and 5 in
-`src/i18n/locales.test.ts` (English and German have identical key shapes, and
-carry the metadata and hrefs the app expects).
+The test suite has 19 tests: 7 in `src/config/sections.test.ts` (section
+ordering, path uniqueness, route fallback), 5 in `src/i18n/locales.test.ts`
+(English and German have identical key shapes, and carry the metadata and
+hrefs the app expects), and 7 in `src/i18n/emphasis.test.ts` (splitting
+`*marked*` German terms out of a locale string).
 
 ## Repository layout
 
 ```
 nick-baumann-personal-site/
 ├── .gitignore
-├── LICENSE                     MIT, copyright Nick Baumann — the site is a gift,
-│                               so the recipient is the copyright holder
+├── LICENSE                     MIT, copyright Nick Baumann
 ├── README.md
 ├── netlify.toml                Netlify build and header settings
 ├── docs/
 │   ├── DECISIONS.md            Why the project is built this way
 │   ├── KNOWN-ISSUES.md         What is wrong or incomplete
 │   ├── NEXT-STEPS.md           Planned work
-│   └── superpowers/            The design spec and implementation plan the
-│                               site was built from — the spec is worth
-│                               reading before restyling; the plan is a
-│                               build record
+│   └── superpowers/            Design spec and implementation plan — the
+│                               spec is worth reading before restyling;
+│                               the plan is a build record
 └── personal-site.web/          The React application
 ```
 
@@ -109,6 +104,7 @@ personal-site.web/
     ├── App.tsx                 Route table
     ├── components/
     │   ├── Layout/             Header, main, footer
+    │   ├── Blueprint/          The technical-drawing backdrop
     │   ├── Brand/              The <h1>
     │   ├── Nav/                Section links
     │   └── SystemControls/     Theme and language buttons
@@ -124,6 +120,8 @@ personal-site.web/
     ├── i18n/
     │   ├── index.ts
     │   ├── useTranslatedList.ts
+    │   ├── emphasis.ts         Splits *marked* German terms out of a string
+    │   ├── EmphasisedText.tsx  Renders those terms as <em lang="de">
     │   └── locales/{en,de}.json
     ├── styles/
     │   ├── _tokens.scss        CSS custom properties
@@ -179,15 +177,36 @@ Styles are written as SCSS and compiled by Vite into CSS Modules — one
 `src/styles/` imported with `@use`.
 
 `src/styles/_tokens.scss` defines CSS custom properties: colour, spacing,
-type and one motion timing. The light values live on `:root`; `[data-theme='dark']`
-overrides only the colours that differ. Component stylesheets carry layout
-only — flow, spacing, alignment — with no shadows, gradients, border radii,
-fluid type, or motion beyond the single `--transition` token.
+type and one motion timing. The light values live on `:root`;
+`[data-theme='dark']` overrides only the values that differ. Component
+stylesheets carry layout — flow, spacing, alignment — with no shadows, border
+radii, fluid type, or motion beyond the single `--transition` token.
 
-**This baseline is a placeholder, not a design.** The site should currently
-read as a clean, unstyled document. The contract for whoever restyles it:
-class names and DOM structure are stable, and every value in `_tokens.scss`
-and every rule in a `*.module.scss` file is theirs to replace.
+### The backdrop
+
+`components/Blueprint` draws the exploded assembly as inline SVG and fixes it
+behind the page, so content scrolls over a drawing that stays put. Nothing is
+filled; every stroke reads `--color-blueprint-line`, so one drawing serves
+both themes. It is `aria-hidden`, and it fades out below 1024px and again
+below 480px, where the text column would otherwise sit over the busiest part.
+
+Gear teeth, rotor windings and encoder slots are dashed strokes on circles
+rather than individually placed segments — one attribute instead of dozens of
+lines, with spacing that stays even at any scale.
+
+### Contrast
+
+Measured against the lightest stop of each background gradient, which is the
+worst case for text over it. Every pair clears WCAG AA.
+
+| | Light (blue) on `#145b8a` | Dark on `#0a1016` |
+| --- | --- | --- |
+| Body text | `#f2f8fc` — 6.78:1 | `#ededed` — 16.33:1 |
+| Muted text | `#cfe3f2` — 5.50:1 | `#a3a3a3` — 7.58:1 |
+| Accent | `#a5dbfa` — 4.88:1 | `#7aa2d6` — 7.25:1 |
+
+Changing a background means recomputing these. The accent doubles as link
+hover text, so it needs 4.5:1, not the 3:1 a non-text control would.
 
 ## Theme
 
@@ -215,21 +234,29 @@ To add a translation key:
 3. Call `t('the.new.key')` (or `useTranslatedList` for a list) from the
    component.
 
-### What is still a placeholder
+### German terms in the English locale
 
-Only the Links section. Its four entries carry placeholder `href` values —
-`https://github.com/`, `https://www.linkedin.com/`, `https://mastodon.social/`
-and `mailto:hello@example.com` — and descriptions that say so. Replace the URLs
-with real ones, or delete the entries that don't apply.
+German job titles and qualifications have no clean English equivalent, so the
+English locale keeps the German and glosses it. A term wrapped in asterisks is
+rendered in italics inside `<em lang="de">`, which also tells a screen reader
+to pronounce it in German; the translation follows as ordinary text:
 
-Everything else is real content, taken from Nick's CV and application letter:
-the About paragraphs, both Experience entries with their duties, all three
-Education entries, the section kickers, `identity.role` and `footer.note`.
+```json
+"role": "*Ausbildung zum Mechatroniker* (apprenticeship as a mechatronics technician)"
+```
 
-**Deliberately not published**, and not to be added later without asking him:
-home address, phone number, personal email address, date and place of birth,
-nationality, and school grades. All of those appear in the source documents and
-were left out on purpose.
+`i18n/emphasis.ts` does the splitting and `i18n/EmphasisedText.tsx` renders it.
+An unpaired asterisk stays literal, so arithmetic in a sentence survives.
+
+Institution, company and place names are **not** marked or translated —
+"Technikerschule Augsburg" and "Landsberg am Lech" are proper nouns. The German
+locale carries no markers at all.
+
+### What is not published
+
+Home address, phone number, personal email address, date and place of birth,
+nationality, and school grades. Do not add them without asking Nick first. If
+a contact route is wanted, prefer a form over an address on the page.
 
 ## Adding a section
 

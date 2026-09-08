@@ -3,6 +3,10 @@
 
 // Breakpoint widths in pixels.
 $bp-sm: 480px;
+$bp-lg: 1024px;
 
-// Stacking order.
+// Stacking order. The blueprint backdrop sits at 0 and the page at 1, so the
+// content always draws over the drawing.
+$z-backdrop: 0;
+$z-page: 1;
 $z-skip-link: 1000;
