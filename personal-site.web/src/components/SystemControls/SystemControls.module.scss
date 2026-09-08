@@ -1,0 +1,11 @@
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.code {
+  margin-left: var(--space-1);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+}
