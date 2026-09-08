@@ -91,9 +91,7 @@ personal-site.web/
     │   ├── LinksSection.tsx
     │   └── Section.module.scss
     ├── config/sections.ts      The ordered section list
-    ├── hooks/
-    │   ├── usePrefersReducedMotion.ts
-    │   └── useDocumentTitle.ts
+    ├── hooks/useDocumentTitle.ts
     ├── i18n/
     │   ├── index.ts
     │   ├── useTranslatedList.ts
@@ -180,11 +178,15 @@ tokens under `[data-theme='dark']`. The starting set is deliberately small:
 
 ```
 --color-bg, --color-surface, --color-text, --color-text-muted,
---color-accent, --color-border
---space-1 … --space-5
+--color-accent, --color-accent-contrast, --color-border, --color-focus
+--space-1 … --space-6
 --font-sans, --text-sm, --text-base, --text-lg, --text-xl
---transition
+--leading-normal, --transition
 ```
+
+`--color-accent-contrast` and `--color-focus` are not ornament: the skip link,
+the text selection colour and the focus ring need them, and the MUI theme reads
+them for the two icon buttons. Every token in the list is referenced by something.
 
 No shadows, no gradients, no border radii, no `clamp()` typography, and no motion
 timings beyond a single `--transition`. Component modules carry layout only — flow, spacing,
@@ -236,7 +238,10 @@ Carried over from `brunoccst/personal-site` in full:
 - `<main>` is a labelled region.
 - A visually hidden `aria-live` region announces the section after a change, and
   the document title is updated to match.
-- `prefers-reduced-motion` is respected through the `motion-reduce` mixin.
+- `prefers-reduced-motion` is respected through the `motion-reduce` block in
+  `global.scss`, which switches off every animation and transition. The reference
+  project's `usePrefersReducedMotion` hook is not carried over: nothing in the
+  neutral baseline animates from JavaScript, so it would have no caller.
 - Focus is drawn with a two-pixel outline in the accent colour.
 - The neutral palette meets WCAG AA contrast in both themes. Ratios are recorded
   in `docs/DECISIONS.md`.
@@ -260,8 +265,8 @@ that can actually be wrong:
 
 - `findSectionByPath` returns the matching section, and the default section for
   an unknown path.
-- `indexOfSection` returns the array position, and `-1` for an unknown id.
-- `SECTIONS` paths are unique, and every `labelKey` resolves in `en.json`.
+- `SECTIONS` paths are unique, every path starts with a slash, and every
+  `labelKey` resolves in both locale files.
 - `en.json` and `de.json` have identical key shapes — the most likely real bug in
   a two-locale app.
 
