@@ -1,13 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" fill="#08304d" />
   <g fill="none" stroke="#a5dbfa" stroke-width="2" stroke-linecap="round">
-    <path d="M5 11v42" />
-    <path d="M9.2 11 22.6 53" />
-    <path d="M14.6 11 28 53" />
-    <path d="M32 11v42" />
-    <path d="M37.5 11a21 10.5 0 0 1 0 21" />
-    <!-- <path d="M37.5 16.25a16 5.25 0 0 1 0 10.5" /> -->
-    <path d="M37.5 32a22 10.5 0 0 1 0 21" />
-    <!-- <path d="M37.5 37.25a17 5.25 0 0 1 0 10.5" /> -->
+    <path d="M20 11v42" />
+	<path d="M24 11v5" />
+    <path d="M28 11 38 53" />
+	<path d="M41 48v5" />
+    <path d="M45 11v42" />
   </g>
 </svg>
