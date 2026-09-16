@@ -7,6 +7,10 @@
     "name": "Nick Baumann",
     "role": "Mechatronics Technician"
   },
+  "seo": {
+    "siteName": "Nick Baumann",
+    "imageAlt": "Nick Baumann — mechatronics technician in Landsberg am Lech"
+  },
   "nav": {
     "label": "Site sections",
     "about": "About",
@@ -25,8 +29,7 @@
   "a11y": {
     "skipToContent": "Skip to content",
     "opensInNewTab": "(opens in a new tab)",
-    "sectionAnnouncement": "{{section}} section",
-    "pageTitle": "Nick Baumann"
+    "sectionAnnouncement": "{{section}} section"
   },
   "footer": {
     "note": "© 2026 Nick Baumann"
@@ -35,6 +38,10 @@
     "about": {
       "title": "About",
       "kicker": "Bavaria, Germany",
+      "seo": {
+        "title": "Nick Baumann — Mechatronics Technician in Landsberg am Lech",
+        "description": "Nick Baumann — state-certified mechatronics technician (staatlich geprüfter Mechatroniktechniker), Monteur at RATIONAL AG in Landsberg am Lech, Bavaria."
+      },
       "paragraphs": [
         "I am a mechatronics technician working as a *Monteur* (assembly technician) at RATIONAL AG in Landsberg am Lech. In July 2026 I completed my further training as a *staatlich geprüfter Mechatroniktechniker* (state-certified mechatronics technician).",
         "My apprenticeship and the production work that followed gave me hands-on experience in a technical environment. I developed a solid understanding of technical processes and learned to approach problems practically, with an eye for workable solutions.",
@@ -45,6 +52,10 @@
     "experience": {
       "title": "Experience",
       "kicker": "2019 — present",
+      "seo": {
+        "title": "Experience — Nick Baumann, Mechatronics Technician",
+        "description": "Where Nick Baumann has worked: assembly technician and mechatronics apprentice at RATIONAL AG in Landsberg am Lech, from 2019 to today."
+      },
       "items": [
         {
           "period": "Feb 2023 — Present",
@@ -67,6 +78,10 @@
     "education": {
       "title": "Education",
       "kicker": "2013 — 2026",
+      "seo": {
+        "title": "Education — Nick Baumann, Mechatronics Technician",
+        "description": "How Nick Baumann trained: state-certified mechatronics technician at the Technikerschule Augsburg, and a mechatronics apprenticeship in Landsberg am Lech."
+      },
       "items": [
         {
           "period": "Sep 2024 — Jul 2026",
@@ -103,6 +118,10 @@
     "links": {
       "title": "Links",
       "kicker": "Elsewhere",
+      "seo": {
+        "title": "Links — Nick Baumann, Mechatronics Technician",
+        "description": "Where to find Nick Baumann, mechatronics technician in Landsberg am Lech, elsewhere online."
+      },
       "items": [
         {
           "label": "LinkedIn",

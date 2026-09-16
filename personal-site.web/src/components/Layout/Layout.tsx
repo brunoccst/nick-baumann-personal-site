@@ -2,7 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import { findSectionByPath } from '../../config/sections';
-import { useDocumentTitle } from '../../hooks/useDocumentTitle';
+import { absoluteUrl } from '../../config/site';
+import { useDocumentHead } from '../../hooks/useDocumentHead';
 import { Blueprint } from '../Blueprint/Blueprint';
 import { Brand } from '../Brand/Brand';
 import { Nav } from '../Nav/Nav';
@@ -17,12 +18,15 @@ export function Layout() {
   const currentSection = findSectionByPath(pathname);
   const sectionLabel = t(currentSection.labelKey);
 
-  // `a11y.pageTitle` is currently just the name, so the tab reads the same on
-  // every route. The section is still passed in, so putting `{{section}}` back
-  // into the locale files is the only change needed to restore a per-page
-  // title. Screen readers are told about the change either way, by the live
-  // region at the bottom of this component.
-  useDocumentTitle(t('a11y.pageTitle', { section: sectionLabel }));
+  // The same title and description `plugins/seo.ts` baked into this route's
+  // HTML, re-applied on every navigation and language switch. Screen readers
+  // are told about the change separately, by the live region at the bottom of
+  // this component.
+  useDocumentHead({
+    title: t(`sections.${currentSection.id}.seo.title`),
+    description: t(`sections.${currentSection.id}.seo.description`),
+    canonical: absoluteUrl(currentSection.path),
+  });
 
   return (
     <>

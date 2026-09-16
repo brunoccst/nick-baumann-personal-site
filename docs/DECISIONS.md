@@ -180,3 +180,30 @@ apply to these lists:
 
 An index key is also simpler than deriving a stable key from content that is
 expected to be edited.
+
+## Why search metadata is generated at build rather than server-rendered
+
+The site is client-rendered, so the HTML on disk is an empty shell. The
+thorough fix is to server-render the app and hydrate it, which would put the
+real text in every response. That was not done, for three reasons.
+
+Emotion and CSS Modules both need SSR-specific handling — a style cache
+extracted on the server, class names matched across the boundary — and the
+theme and language are chosen from `localStorage` and `navigator.languages`,
+neither of which exists during a build. Rendering the app at build time would
+therefore mean either a guessed theme flashing on load or a hydration
+mismatch, in exchange for text that Googlebot already gets by running the
+JavaScript.
+
+What the crawler cannot get by running JavaScript is the part that is read
+*before* rendering: the title and description in a search result, the Open
+Graph card LinkedIn and WhatsApp scrape without running scripts at all, the
+canonical URL, and the `Person` markup that identifies which Nick Baumann
+this is. `plugins/seo.ts` writes exactly that, per route, from the same locale
+files the app renders from — no React, no hydration, and nothing that can
+flash.
+
+The `<noscript>` copy of each section is a side effect of having the locale
+data to hand at build time. It is a genuine fallback for readers without
+JavaScript rather than a search-engine trick: it carries the same text the
+app renders, which is the condition under which serving it is legitimate.

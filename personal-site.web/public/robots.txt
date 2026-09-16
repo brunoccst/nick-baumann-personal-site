@@ -1,2 +1,6 @@
+# Nothing here is private, so every crawler gets the whole site.
 User-agent: *
 Allow: /
+
+# `plugins/seo.ts` appends a `Sitemap:` line at build time. It has to be an
+# absolute URL, and only the build knows which origin the site is deployed to.

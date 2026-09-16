@@ -69,6 +69,29 @@ Links lists only LinkedIn. There is no GitHub, Mastodon or email entry,
 because no other public profile was available. Adding one is a locale-file
 edit; adding an email address is not — see below.
 
+## Search engines only ever see the English copy
+
+`plugins/seo.ts` writes one static file per route, and it has to pick a
+language to write them in, because the app chooses its language in the browser
+from `localStorage` and `navigator.languages`. It picks English, the app's own
+fallback.
+
+So a German search — "Mechatroniktechniker Landsberg am Lech" — is matched
+against an English title and description, even though the German copy exists
+in `de.json` and is applied the moment the page runs. Fixing it properly means
+giving German its own URLs, a `/de/` prefix and `hreflang` tags pairing them
+with the English ones; see `docs/NEXT-STEPS.md`.
+
+## The structured data names an employer the site cannot verify
+
+The `Person` block written into each page says Nick `worksFor` RATIONAL AG and
+lists three schools under `alumniOf`. Those are read out of the locale file,
+so they match the page, but nothing checks that they are still current: a job
+change updates the Experience section and the structured data together, which
+is right, whereas leaving the locale file stale publishes a stale claim in a
+machine-readable form. Treat `sections.experience.items[0]` as the thing that
+has to be true.
+
 ## The repository and hosting are owned by `brunoccst`
 
 The GitHub repository `brunoccst/nick-baumann-personal-site` and the Netlify

@@ -1,0 +1,120 @@
+<!doctype html>
+<!--
+  Source of `public/og-image.png`, the card Google, LinkedIn and WhatsApp show
+  when the site is shared. It is a 1200×630 page rather than a drawing so the
+  type stays editable. Regenerate the PNG after changing it with
+  `chrome-headless-shell`, run from `personal-site.web`:
+
+    chrome-headless-shell --disable-gpu --hide-scrollbars \
+      --screenshot=public/og-image.png --window-size=1200,630 \
+      tools/og-image.html
+
+  Chrome's own `--headless` works too, but it counts browser chrome inside
+  `--window-size` and leaves the bottom ~85px of the shot blank.
+
+  Colours are the dark theme's, copied from `src/styles/_tokens.scss`.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Nick Baumann — social preview card</title>
+    <style>
+      * {
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      /* Without a background of its own, <html> lets the body's gradient
+         propagate to the canvas, where it is sized to the viewport rather than
+         to the card — which leaves the bottom of the screenshot unpainted. */
+      html {
+        background: #000;
+      }
+
+      body {
+        width: 1200px;
+        height: 630px;
+        display: flex;
+        align-items: center;
+        gap: 72px;
+        padding: 0 96px;
+        overflow: hidden;
+        position: relative;
+        background: radial-gradient(ellipse at 38% 45%, #0a1016 0%, #000 78%);
+        color: #ededed;
+        font-family: ui-sans-serif, system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+          sans-serif;
+      }
+
+      /* The same faint drafting grid the site draws behind its content. */
+      .grid {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(rgb(160 200 255 / 22%) 1px, transparent 1px),
+          linear-gradient(90deg, rgb(160 200 255 / 22%) 1px, transparent 1px);
+        background-size: 120px 120px;
+        opacity: 0.35;
+      }
+
+      .monogram {
+        position: relative;
+        flex: none;
+        width: 260px;
+        height: 260px;
+      }
+
+      .text {
+        position: relative;
+      }
+
+      .name {
+        font-size: 84px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+      }
+
+      .role {
+        margin-top: 20px;
+        font-size: 38px;
+        font-weight: 500;
+        color: #7aa2d6;
+      }
+
+      .place {
+        margin-top: 14px;
+        font-size: 30px;
+        color: #a3a3a3;
+      }
+
+      /* A drawing needs a datum line. */
+      .rule {
+        margin-top: 36px;
+        width: 180px;
+        height: 2px;
+        background: #7aa2d6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid"></div>
+
+    <svg class="monogram" viewBox="0 0 64 64" aria-hidden="true">
+      <rect width="64" height="64" fill="#08304d" />
+      <g fill="none" stroke="#a5dbfa" stroke-width="2" stroke-linecap="round">
+        <path d="M20 11v42" />
+        <path d="M24 11v5" />
+        <path d="M28 11 38 53" />
+        <path d="M41 48v5" />
+        <path d="M45 11v42" />
+      </g>
+    </svg>
+
+    <div class="text">
+      <p class="name">Nick Baumann</p>
+      <p class="role">Mechatronics Technician</p>
+      <p class="place">RATIONAL AG · Landsberg am Lech, Bavaria</p>
+      <div class="rule"></div>
+    </div>
+  </body>
+</html>

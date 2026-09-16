@@ -56,6 +56,32 @@ describe('locale files', () => {
     }
   });
 
+  it('give every section a title and description for search results', () => {
+    for (const section of SECTIONS) {
+      for (const [name, locale] of [
+        ['en', en],
+        ['de', de],
+      ] as const) {
+        const seo = readPath(locale, `sections.${section.id}.seo`) as
+          | { title: string; description: string }
+          | undefined;
+
+        expect(seo, `sections.${section.id}.seo in ${name}`).toBeTypeOf('object');
+
+        // Google truncates a result at roughly 60 characters of title and 160
+        // of description. Over that is not an error, but it is copy nobody
+        // reads, so the bound is set where the snippet stops being visible.
+        expect(seo?.title.length, `${section.id} title in ${name}`).toBeLessThanOrEqual(70);
+        expect(seo?.description.length, `${section.id} description in ${name}`).toBeLessThanOrEqual(
+          165,
+        );
+
+        // A result that does not name him is no use for a search on his name.
+        expect(seo?.title, `${section.id} title in ${name}`).toContain(locale.identity.name);
+      }
+    }
+  });
+
   it('name the site owner rather than a Lorem Ipsum placeholder', () => {
     expect(en.identity.name).toBe('Nick Baumann');
     expect(de.identity.name).toBe('Nick Baumann');

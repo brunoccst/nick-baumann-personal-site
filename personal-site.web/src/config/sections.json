@@ -1,0 +1,6 @@
+[
+  { "id": "about", "path": "/about", "labelKey": "nav.about" },
+  { "id": "experience", "path": "/experience", "labelKey": "nav.experience" },
+  { "id": "education", "path": "/education", "labelKey": "nav.education" },
+  { "id": "links", "path": "/links", "labelKey": "nav.links" }
+]

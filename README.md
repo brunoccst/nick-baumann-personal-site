@@ -95,7 +95,9 @@ nick-baumann-personal-site/
 ```
 personal-site.web/
 ├── index.html
-├── public/{favicon.svg,robots.txt}
+├── public/{favicon.svg,robots.txt,og-image.png}
+├── plugins/seo.ts              Build step: per-route HTML and the sitemap
+├── tools/og-image.html         Source of the social preview card
 ├── vite.config.ts
 ├── tsconfig.json, tsconfig.app.json, tsconfig.node.json
 ├── package.json
@@ -115,8 +117,11 @@ personal-site.web/
     │   ├── EducationSection.tsx
     │   ├── LinksSection.tsx
     │   └── Section.module.scss
-    ├── config/sections.ts      The ordered section list
-    ├── hooks/useDocumentTitle.ts
+    ├── config/
+    │   ├── sections.ts         The ordered section list
+    │   ├── sections.json       …and its data, shared with plugins/seo.ts
+    │   └── site.ts             The origin canonical URLs are built from
+    ├── hooks/useDocumentHead.ts
     ├── i18n/
     │   ├── index.ts
     │   ├── useTranslatedList.ts
@@ -149,20 +154,23 @@ personal-site.web/
 
 ## Routing
 
-Every route is generated from a single array, `src/config/sections.ts`:
+Every route is generated from a single list, `src/config/sections.json`:
 
-```ts
-export const SECTIONS: readonly SectionDefinition[] = [
-  { id: 'about',      path: '/about',      labelKey: 'nav.about' },
-  { id: 'experience', path: '/experience', labelKey: 'nav.experience' },
-  { id: 'education',  path: '/education',  labelKey: 'nav.education' },
-  { id: 'links',      path: '/links',      labelKey: 'nav.links' },
-] as const;
+```json
+[
+  { "id": "about",      "path": "/about",      "labelKey": "nav.about" },
+  { "id": "experience", "path": "/experience", "labelKey": "nav.experience" },
+  { "id": "education",  "path": "/education",  "labelKey": "nav.education" },
+  { "id": "links",      "path": "/links",      "labelKey": "nav.links" }
+]
 ```
 
-`App.tsx` builds its route table from that array, and `Nav` builds its links
-from the same array, so navigation and routing cannot disagree with each
-other.
+`src/config/sections.ts` types that list as `SECTIONS`. `App.tsx` builds its
+route table from it, `Nav` builds its links from it, and `plugins/seo.ts`
+builds the static HTML and the sitemap from it, so navigation, routing and
+what search engines are told cannot disagree with each other. It is JSON
+rather than TypeScript only because the build plugin runs in Node, outside the
+app's TypeScript project, and needs to read the same list.
 
 | URL | Result |
 | --- | --- |
@@ -234,6 +242,19 @@ To add a translation key:
 3. Call `t('the.new.key')` (or `useTranslatedList` for a list) from the
    component.
 
+### Search-result copy
+
+Each `sections.<id>` block also carries a `seo.title` and a `seo.description`.
+These are not rendered on the page: they are the tab title, the `<meta
+name="description">` and the Open Graph card for that route. `locales.test.ts`
+holds them to roughly what Google shows before truncating — 70 characters of
+title, 165 of description — and asserts that every title names Nick, since a
+result that does not is no use for a search on his name.
+
+Only the English copy reaches a crawler today, because the static files are
+English; the German copy is applied in the browser when the visitor switches
+language. Giving German its own URLs is listed in `docs/NEXT-STEPS.md`.
+
 ### German terms in the English locale
 
 German job titles and qualifications have no clean English equivalent, so the
@@ -260,15 +281,18 @@ a contact route is wanted, prefer a form over an address on the page.
 
 ## Adding a section
 
-1. Add an entry to `SECTIONS` in `src/config/sections.ts`, with a new `id`,
-   `path`, and `labelKey`.
+1. Add an entry to `src/config/sections.json`, with a new `id`, `path`, and
+   `labelKey`, and add the `id` to the `SectionId` union in
+   `src/config/sections.ts`.
 2. Add a matching `nav.<id>` key and a `sections.<id>` block to both locale
-   files.
+   files. The block needs a `seo.title` and a `seo.description`; see
+   [Search engines](#search-engines).
 3. Write the section component under `src/sections/` and register it in
    `SECTION_COMPONENTS` in `src/App.tsx`.
 
-`Nav` and the route table both read `SECTIONS`, so nothing else needs to
-change for the new section to appear in navigation and be reachable by URL.
+`Nav`, the route table and `plugins/seo.ts` all read the same list, so nothing
+else needs to change for the new section to appear in navigation, be reachable
+by URL, and turn up in the sitemap.
 
 ## Accessibility
 
@@ -283,6 +307,76 @@ change for the new section to appear in navigation and be reachable by URL.
 - The neutral palette meets WCAG AA contrast for body text in both themes;
   the measured ratios are recorded in `docs/DECISIONS.md`.
 
+## Search engines
+
+A search for "Nick Baumann" returns other people of that name, so the job here
+is less "be crawlable" than "be recognisably *this* Nick Baumann": a
+mechatronics technician at RATIONAL AG in Landsberg am Lech. Everything below
+is aimed at that.
+
+### What the build produces
+
+The app is rendered in the browser, so the HTML on disk would otherwise be an
+empty shell with one title for all four URLs. `plugins/seo.ts` runs after the
+Vite build and rewrites two marked blocks of `dist/index.html` once per
+section, writing the result to `dist/<section>/index.html`:
+
+- A `<title>` and `<meta name="description">` per route, read from the
+  `sections.<id>.seo` block of `src/i18n/locales/en.json`.
+- A `<link rel="canonical">`. `/` carries the canonical of `/about`, because
+  `/` redirects there.
+- Open Graph and Twitter card tags, pointing at `public/og-image.png`, so a
+  link pasted into LinkedIn or WhatsApp shows a card rather than a bare URL.
+- A `Person` block in JSON-LD. This is the part that answers "which Nick
+  Baumann?": the role, `worksFor` RATIONAL AG, `workLocation` Landsberg am
+  Lech, `alumniOf` the three schools, and `sameAs` the LinkedIn profile. The
+  employer, schools and skills are read out of the locale file, so the markup
+  cannot drift from the page it describes.
+- A `<noscript>` copy of the section's text, for readers without JavaScript.
+
+It also writes `dist/sitemap.xml` and appends a `Sitemap:` line to
+`dist/robots.txt`.
+
+Netlify serves a file that exists in preference to the unforced `/*` rewrite
+in `netlify.toml`, so `/experience` gets `experience/index.html` and only an
+unknown path falls back to the SPA shell.
+
+In the browser, `useDocumentHead` applies the same title, description and
+canonical again on every navigation and language switch — which is also what
+covers the German copy, since the static files are English.
+
+### Changing the domain
+
+Canonical and Open Graph URLs are absolute, so the build has to be told where
+the site lives. Both `plugins/seo.ts` and `src/config/site.ts` read
+`VITE_SITE_URL` and fall back to `https://nick-baumann.netlify.app`. Pointing
+a custom domain at the site means setting that one environment variable in the
+Netlify project, and nothing else.
+
+### What the repository cannot do
+
+Ranking for a person's name is mostly won off the site, and these steps need
+Nick's own accounts:
+
+1. **Verify the site in [Google Search Console](https://search.google.com/search-console)**
+   and submit `https://<domain>/sitemap.xml`. This is also where to watch
+   which queries the site turns up for, and to request indexing rather than
+   waiting for a crawl.
+2. **Put the site's URL in the LinkedIn profile's website field.** LinkedIn is
+   the strongest existing signal for the name, and the `sameAs` link in the
+   JSON-LD only points one way until the profile links back.
+3. **Consider a custom domain.** `nick-baumann.netlify.app` works, but a
+   domain carrying the name — `nick-baumann.de` and the like — is a stronger
+   signal for a name query than a subdomain of a hosting provider, and it
+   survives a move away from Netlify.
+4. **Keep the name, role and town spelled the same everywhere** — the site,
+   LinkedIn, and anywhere else. Search engines tie profiles into one entity by
+   matching those strings; "Landsberg a. Lech" and "Landsberg am Lech" are two
+   different strings.
+
+Expect weeks rather than days. A new site on a new domain is not indexed
+immediately, and a name query is competitive to begin with.
+
 ## Deployment
 
 Netlify builds from `netlify.toml` at the repository root, so the build is
@@ -291,9 +385,13 @@ reproducible from the repository alone:
 - Base directory `personal-site.web`, build command `npm run build`,
   publish directory `dist`, Node 22.
 - A catch-all redirect to `/index.html` with status 200, so a hard refresh
-  on a route like `/experience` works instead of 404ing.
+  on a route like `/experience` works instead of 404ing. It is unforced, so
+  the per-route HTML written by `plugins/seo.ts` wins where it exists.
 - `X-Content-Type-Options`, `X-Frame-Options` and `Referrer-Policy` headers,
-  and a one-year immutable cache on `/assets/*`.
+  a one-year immutable cache on `/assets/*`, and no caching of
+  `/sitemap.xml`.
+- Optionally `VITE_SITE_URL`, if the site moves off the Netlify subdomain —
+  see [Search engines](#search-engines).
 
 The Netlify project is named `nick-baumann` and serves the site at
 [nick-baumann.netlify.app](https://nick-baumann.netlify.app). It builds from

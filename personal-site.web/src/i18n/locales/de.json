@@ -7,6 +7,10 @@
     "name": "Nick Baumann",
     "role": "Mechatroniktechniker"
   },
+  "seo": {
+    "siteName": "Nick Baumann",
+    "imageAlt": "Nick Baumann — Mechatroniktechniker in Landsberg am Lech"
+  },
   "nav": {
     "label": "Seitenbereiche",
     "about": "Über mich",
@@ -25,8 +29,7 @@
   "a11y": {
     "skipToContent": "Zum Inhalt springen",
     "opensInNewTab": "(wird in einem neuen Tab geöffnet)",
-    "sectionAnnouncement": "Bereich {{section}}",
-    "pageTitle": "Nick Baumann"
+    "sectionAnnouncement": "Bereich {{section}}"
   },
   "footer": {
     "note": "© 2026 Nick Baumann"
@@ -35,6 +38,10 @@
     "about": {
       "title": "Über mich",
       "kicker": "Bayern, Deutschland",
+      "seo": {
+        "title": "Nick Baumann — Mechatroniktechniker in Landsberg am Lech",
+        "description": "Nick Baumann ist staatlich geprüfter Mechatroniktechniker und arbeitet als Monteur bei der RATIONAL AG in Landsberg am Lech, Bayern."
+      },
       "paragraphs": [
         "Ich bin Mechatroniker und arbeite als Monteur bei der RATIONAL AG in Landsberg am Lech. Im Juli 2026 habe ich meine Weiterbildung zum staatlich geprüften Mechatroniktechniker abgeschlossen.",
         "Durch meine Ausbildung und die anschließende Tätigkeit in der Fertigung konnte ich praktische Erfahrung in einem technischen Umfeld sammeln. Dabei habe ich ein gutes Verständnis für technische Abläufe entwickelt und gelernt, Probleme praktisch und lösungsorientiert anzugehen.",
@@ -45,6 +52,10 @@
     "experience": {
       "title": "Erfahrung",
       "kicker": "2019 — heute",
+      "seo": {
+        "title": "Erfahrung — Nick Baumann, Mechatroniktechniker",
+        "description": "Wo Nick Baumann gearbeitet hat: Monteur und Ausbildung zum Mechatroniker bei der RATIONAL AG in Landsberg am Lech, seit 2019."
+      },
       "items": [
         {
           "period": "Feb 2023 — heute",
@@ -67,6 +78,10 @@
     "education": {
       "title": "Bildungsweg",
       "kicker": "2013 — 2026",
+      "seo": {
+        "title": "Bildungsweg — Nick Baumann, Mechatroniktechniker",
+        "description": "Ausbildung von Nick Baumann: staatlich geprüfter Mechatroniktechniker an der Technikerschule Augsburg, Ausbildung zum Mechatroniker in Landsberg am Lech."
+      },
       "items": [
         {
           "period": "Sep 2024 — Jul 2026",
@@ -103,6 +118,10 @@
     "links": {
       "title": "Links",
       "kicker": "Anderswo",
+      "seo": {
+        "title": "Links — Nick Baumann, Mechatroniktechniker",
+        "description": "Wo Nick Baumann, Mechatroniktechniker in Landsberg am Lech, sonst noch zu finden ist."
+      },
       "items": [
         {
           "label": "LinkedIn",

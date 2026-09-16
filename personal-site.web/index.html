@@ -4,12 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0a1016" />
-    <meta name="description" content="Personal site of Nick Baumann." />
+    <meta name="author" content="Nick Baumann" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Nick Baumann</title>
+
+    <!--
+      Everything between the `seo` markers is rewritten per route by
+      `plugins/seo.ts` at build time, so each URL ships its own title,
+      description, canonical and preview card without waiting for JavaScript.
+      What is written here is the default the dev server and any unmatched
+      route get: the About section, in English.
+    -->
+    <!-- seo:start -->
+    <title>Nick Baumann — Mechatronics Technician in Landsberg am Lech</title>
+    <meta
+      name="description"
+      content="Nick Baumann — state-certified mechatronics technician (staatlich geprüfter Mechatroniktechniker), Monteur at RATIONAL AG in Landsberg am Lech, Bavaria."
+    />
+    <link rel="canonical" href="https://nick-baumann.netlify.app/about" />
+    <!-- seo:end -->
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!--
+      A plain-HTML copy of the routed section, for readers that do not run
+      JavaScript. `plugins/seo.ts` rewrites it per route at build time from the
+      same locale files the app renders from; what is written here is the
+      default the dev server gets.
+    -->
+    <!-- noscript:start -->
+    <noscript>
+      <h1>Nick Baumann</h1>
+      <p>Mechatronics Technician</p>
+      <p>
+        Mechatronics technician at RATIONAL AG in Landsberg am Lech, Bavaria.
+        This site needs JavaScript to show the rest.
+      </p>
+    </noscript>
+    <!-- noscript:end -->
   </body>
 </html>

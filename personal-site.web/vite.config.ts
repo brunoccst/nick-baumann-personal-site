@@ -2,6 +2,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
+import { seo } from './plugins/seo.ts';
+
 // Third-party code that gets its own chunk, so app updates do not invalidate it.
 const VENDOR_CHUNKS: Record<string, string[]> = {
   react: ['node_modules/react/', 'node_modules/react-dom/', 'node_modules/react-router'],
@@ -10,7 +12,7 @@ const VENDOR_CHUNKS: Record<string, string[]> = {
 };
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), seo()],
   build: {
     outDir: 'dist',
     rollupOptions: {
