@@ -45,7 +45,15 @@
   font-size: var(--text-sm);
 }
 
-.separator {
+// A start and an end, such as the two dates of an entry. The dash between
+// them is drawn here so the markup only holds the values.
+.range > * + *::before {
+  content: '—';
+  margin: 0 var(--space-2);
+}
+
+.location::before {
+  content: '·';
   margin: 0 var(--space-2);
 }
 
