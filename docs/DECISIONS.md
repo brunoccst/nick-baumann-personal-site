@@ -29,20 +29,22 @@ the translations or the accessibility behaviour.
 
 ## The favicon
 
-`public/favicon.svg` is an "NB" monogram drawn to match a supplied reference:
-monoline strokes with rounded caps, a stem shared between the two letters, and
-the doubled diagonals and doubled bowls that give the mark its character. It is
-drawn with the same eight `<path>` elements the reference implies rather than
-traced, so the geometry is editable.
+`public/favicon.svg` is a single "N": two stems and a diagonal, monoline with
+rounded caps. Two short strokes echo the diagonal's ends — one beside the left
+stem at the top, one beside the right stem at the bottom — so the letter reads
+as drawn with a doubled line, the same idea the earlier "NB" monogram carried
+in its doubled diagonals and bowls, with less to crowd at small sizes. It
+replaced that monogram on 9 September 2026.
 
-It uses the site's own colours — `#a5dbfa` on `#08304d`, 9.16:1 — rather than
-the reference's dark-blue-on-paper, and the background is a full-bleed square
-because the rest of the design has no border radii.
+It uses the site's own colours — `#a5dbfa` on `#08304d`, 9.16:1 — and the
+background is a full-bleed square because the rest of the design has no
+border radii. Each stroke is its own `<path>`, so the geometry is editable by
+hand.
 
-The doubled strokes are the point of the mark, so they were kept even though
-they crowd at 16px. It reads cleanly from 24px up, which covers every browser
-tab on a modern display; a simplified single-stroke variant would be the
-answer if 16px legibility ever matters more than fidelity.
+The strokes are 2 units wide on a 64-unit canvas, so they render half a pixel
+wide at 16px and come out faint there; the mark reads clearly from 24px up. A
+heavier stroke (3–4 units) would be the fix if 16px tabs ever matter more than
+the hairline look, which matches the drawing behind the page.
 
 ## Why the architecture came from `brunoccst/personal-site`
 
@@ -58,22 +60,19 @@ reference project's newer form, and none were carried over here. `Nav`
 replaces the reference project's `SideNav`, renamed because it no longer
 promises a side; `ContentPanel` and `Intro` have no counterpart at all.
 
-## Why Material UI is here
+## Why there is no component library
 
-MUI serves two things: the icon buttons in `SystemControls` and their
-tooltips. It pulls in `@mui/material`, `@mui/icons-material`, and by
-extension `@emotion/react` and `@emotion/styled` for a total of two visible
-controls. It was kept for parity with `brunoccst/personal-site`, which uses
-it the same way.
+The two buttons in `SystemControls` are plain `<button>` elements styled in
+`SystemControls.module.scss`, with their three icons inlined from Material
+Icons in `components/Icon`. Material UI used to supply them, which pulled in
+`@mui/material`, `@mui/icons-material`, `@emotion/react` and
+`@emotion/styled` for two controls, and every restyle had to fight MUI's own
+rules from a hand-written theme. It was removed on 10 October 2026, taking a
+161 kB vendor chunk with it.
 
-This is an honest trade, not a settled one. A future restyle has to override
-MUI's own styling for those two buttons — `createAppTheme.ts` already does
-this by hand, reading the CSS custom properties and setting
-`styleOverrides` on `MuiIconButton` and `MuiTooltip`, including a
-`sizeSmall` override needed only because MUI's own rule would otherwise win
-on specificity. Dropping MUI for two hand-rolled `<button>` elements remains
-a reasonable option, and would remove `@emotion/react` and
-`@emotion/styled` as well.
+The tooltips are CSS-only: a `::after` box reading `data-tooltip`, shown on
+hover and on keyboard focus after a short delay. The button's `aria-label`
+carries the same text for screen readers, so the tooltip is purely visual.
 
 ## What is deliberately not published
 
@@ -180,3 +179,13 @@ apply to these lists:
 
 An index key is also simpler than deriving a stable key from content that is
 expected to be edited.
+
+## Why `index.html` carries an inline script
+
+`AppThemeProvider` only corrects `data-theme` after React has rendered, so a
+visitor whose saved or system theme is light used to see one dark frame
+first. A few lines in `<head>` read the same `localStorage` key and media
+query before anything paints, which is the only way to avoid that in a
+single-page app without server rendering. The logic is duplicated rather than
+shared because the script must run before any bundle loads; both copies point
+at each other.

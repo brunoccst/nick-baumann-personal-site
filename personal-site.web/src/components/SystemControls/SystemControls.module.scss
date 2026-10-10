@@ -1,7 +1,58 @@
+@use '../../styles/mixins' as m;
+
 .controls {
   display: flex;
   align-items: center;
   gap: var(--space-1);
+}
+
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2);
+  color: var(--color-text-muted);
+  transition: color var(--transition), background-color var(--transition);
+
+  &:hover {
+    color: var(--color-text);
+    background-color: var(--color-surface);
+  }
+
+  // The visible label for sighted mouse and keyboard users; screen readers
+  // get the same text from `aria-label`. Shown after a short delay so it
+  // does not flicker as the pointer crosses the header.
+  &::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + var(--space-1));
+    right: 0;
+    padding: var(--space-1) var(--space-2);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition), visibility var(--transition);
+    z-index: 1;
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 400ms;
+  }
+
+  @include m.motion-reduce {
+    &::after {
+      transition: none;
+    }
+  }
 }
 
 .code {
