@@ -60,22 +60,19 @@ reference project's newer form, and none were carried over here. `Nav`
 replaces the reference project's `SideNav`, renamed because it no longer
 promises a side; `ContentPanel` and `Intro` have no counterpart at all.
 
-## Why Material UI is here
+## Why there is no component library
 
-MUI serves two things: the icon buttons in `SystemControls` and their
-tooltips. It pulls in `@mui/material`, `@mui/icons-material`, and by
-extension `@emotion/react` and `@emotion/styled` for a total of two visible
-controls. It was kept for parity with `brunoccst/personal-site`, which uses
-it the same way.
+The two buttons in `SystemControls` are plain `<button>` elements styled in
+`SystemControls.module.scss`, with their three icons inlined from Material
+Icons in `components/Icon`. Material UI used to supply them, which pulled in
+`@mui/material`, `@mui/icons-material`, `@emotion/react` and
+`@emotion/styled` for two controls, and every restyle had to fight MUI's own
+rules from a hand-written theme. It was removed on 10 October 2026, taking a
+161 kB vendor chunk with it.
 
-This is an honest trade, not a settled one. A future restyle has to override
-MUI's own styling for those two buttons — `createAppTheme.ts` already does
-this by hand, reading the CSS custom properties and setting
-`styleOverrides` on `MuiIconButton` and `MuiTooltip`, including a
-`sizeSmall` override needed only because MUI's own rule would otherwise win
-on specificity. Dropping MUI for two hand-rolled `<button>` elements remains
-a reasonable option, and would remove `@emotion/react` and
-`@emotion/styled` as well.
+The tooltips are CSS-only: a `::after` box reading `data-tooltip`, shown on
+hover and on keyboard focus after a short delay. The button's `aria-label`
+carries the same text for screen readers, so the tooltip is purely visual.
 
 ## What is deliberately not published
 

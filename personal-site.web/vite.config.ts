@@ -5,7 +5,6 @@ import react from '@vitejs/plugin-react';
 // Third-party code that gets its own chunk, so app updates do not invalidate it.
 const VENDOR_CHUNKS: Record<string, string[]> = {
   react: ['node_modules/react/', 'node_modules/react-dom/', 'node_modules/react-router'],
-  mui: ['node_modules/@mui/', 'node_modules/@emotion/'],
   i18n: ['node_modules/i18next/', 'node_modules/react-i18next/'],
 };
 

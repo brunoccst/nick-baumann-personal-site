@@ -1,8 +1,5 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider } from '@mui/material/styles';
 
-import { createAppTheme } from './createAppTheme';
 import { ThemeModeContext, type ThemeMode } from './themeContext';
 
 const STORAGE_KEY = 'nick-baumann-site.theme';
@@ -51,15 +48,9 @@ export function AppThemeProvider({ children }: { children: ReactNode }) {
     setMode((current) => (current === 'dark' ? 'light' : 'dark'));
   }, []);
 
-  const theme = useMemo(() => createAppTheme(mode), [mode]);
   const contextValue = useMemo(() => ({ mode, toggleMode }), [mode, toggleMode]);
 
   return (
-    <ThemeModeContext value={contextValue}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline enableColorScheme={false} />
-        {children}
-      </ThemeProvider>
-    </ThemeModeContext>
+    <ThemeModeContext value={contextValue}>{children}</ThemeModeContext>
   );
 }

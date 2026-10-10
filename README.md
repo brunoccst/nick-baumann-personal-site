@@ -106,6 +106,7 @@ personal-site.web/
     │   ├── Layout/             Header, main, footer
     │   ├── Blueprint/          The technical-drawing backdrop
     │   ├── Brand/              The <h1>
+    │   ├── Icon/               The three inline control icons
     │   ├── Nav/                Section links
     │   └── SystemControls/     Theme and language buttons
     ├── sections/
@@ -130,7 +131,6 @@ personal-site.web/
     │   └── global.scss         Reset, body defaults, focus ring, skip link
     └── theme/
         ├── AppThemeProvider.tsx
-        ├── createAppTheme.ts
         └── themeContext.ts
 ```
 
@@ -143,7 +143,6 @@ personal-site.web/
 | Build tool | Vite 8.2.2 |
 | Routing | React Router 7.18.3 |
 | Translations | i18next 26.4.2 + react-i18next 17.0.13 |
-| Component library | MUI 9.4.0 (+ @emotion/react, @emotion/styled) |
 | Styling | Sass 1.104, compiled to CSS Modules |
 | Tests | Vitest 4 |
 
@@ -211,8 +210,7 @@ hover text, so it needs 4.5:1, not the 3:1 a non-text control would.
 ## Theme
 
 `AppThemeProvider` writes `data-theme="light"` or `data-theme="dark"` onto
-`<html>`, mirrors the mode into a MUI theme for the two icon buttons in
-`SystemControls`, and persists the choice to `localStorage` under the key
+`<html>` and persists the choice to `localStorage` under the key
 `nick-baumann-site.theme`. With no saved value, it follows the operating
 system's `prefers-color-scheme`. A short inline script in `index.html` applies
 the same choice before first paint, so the page never flashes the wrong theme.
