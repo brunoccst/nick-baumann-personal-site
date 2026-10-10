@@ -29,16 +29,19 @@ describe('formatMonth', () => {
   });
 });
 
-describe('sortTimeline', () => {
-  const entry = (start: TimelineEntry['start'], end?: TimelineEntry['end']): TimelineEntry => ({
+// Builds an entry with only the dates that matter for sorting.
+function entry(start: TimelineEntry['start'], end?: TimelineEntry['end']): TimelineEntry {
+  return {
     start,
     end,
     role: start,
     organisation: '',
     location: '',
     summary: '',
-  });
+  };
+}
 
+describe('sortTimeline', () => {
   it('puts the newest start first and an ongoing entry ahead of a finished one', () => {
     const sorted = sortTimeline([
       entry('2019-09', '2023-02'),
@@ -65,18 +68,21 @@ describe('sortTimeline', () => {
   });
 });
 
-describe.each(Object.entries(CONTENT))('%s content', (_, entries) => {
-  it.each(entries.map((item) => [item.start, item] as const))('%s has valid dates', (_, item) => {
-    expect(item.start).toMatch(MONTH);
-    if (item.end !== undefined) {
-      expect(item.end).toMatch(MONTH);
-      expect(item.end >= item.start).toBe(true);
-    }
-  });
+describe.each(Object.entries(CONTENT))('%s content', (_section, entries) => {
+  it.each(entries.map((item) => [item.start, item] as const))(
+    '%s has valid dates',
+    (_start, item) => {
+      expect(item.start).toMatch(MONTH);
+      if (item.end !== undefined) {
+        expect(item.end).toMatch(MONTH);
+        expect(item.end >= item.start).toBe(true);
+      }
+    },
+  );
 
   it.each(entries.map((item) => [item.start, item] as const))(
     '%s has text in every language',
-    (_, item) => {
+    (_start, item) => {
       const texts = [
         item.role,
         item.organisation,
