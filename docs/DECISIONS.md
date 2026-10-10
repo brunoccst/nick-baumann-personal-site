@@ -29,20 +29,22 @@ the translations or the accessibility behaviour.
 
 ## The favicon
 
-`public/favicon.svg` is an "NB" monogram drawn to match a supplied reference:
-monoline strokes with rounded caps, a stem shared between the two letters, and
-the doubled diagonals and doubled bowls that give the mark its character. It is
-drawn with the same eight `<path>` elements the reference implies rather than
-traced, so the geometry is editable.
+`public/favicon.svg` is a single "N": two stems and a diagonal, monoline with
+rounded caps. Two short strokes echo the diagonal's ends — one beside the left
+stem at the top, one beside the right stem at the bottom — so the letter reads
+as drawn with a doubled line, the same idea the earlier "NB" monogram carried
+in its doubled diagonals and bowls, with less to crowd at small sizes. It
+replaced that monogram on 9 September 2026.
 
-It uses the site's own colours — `#a5dbfa` on `#08304d`, 9.16:1 — rather than
-the reference's dark-blue-on-paper, and the background is a full-bleed square
-because the rest of the design has no border radii.
+It uses the site's own colours — `#a5dbfa` on `#08304d`, 9.16:1 — and the
+background is a full-bleed square because the rest of the design has no
+border radii. Each stroke is its own `<path>`, so the geometry is editable by
+hand.
 
-The doubled strokes are the point of the mark, so they were kept even though
-they crowd at 16px. It reads cleanly from 24px up, which covers every browser
-tab on a modern display; a simplified single-stroke variant would be the
-answer if 16px legibility ever matters more than fidelity.
+The strokes are 2 units wide on a 64-unit canvas, so they render half a pixel
+wide at 16px and come out faint there; the mark reads clearly from 24px up. A
+heavier stroke (3–4 units) would be the fix if 16px tabs ever matter more than
+the hairline look, which matches the drawing behind the page.
 
 ## Why the architecture came from `brunoccst/personal-site`
 
