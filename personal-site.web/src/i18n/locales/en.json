@@ -31,6 +31,9 @@
   "footer": {
     "note": "© 2026 Nick Baumann"
   },
+  "timeline": {
+    "present": "Present"
+  },
   "sections": {
     "about": {
       "title": "About",
@@ -43,62 +46,10 @@
       ]
     },
     "experience": {
-      "title": "Experience",
-      "kicker": "2019 — present",
-      "items": [
-        {
-          "period": "Feb 2023 — Present",
-          "role": "*Monteur* (assembly technician)",
-          "organisation": "RATIONAL AG",
-          "location": "Landsberg am Lech",
-          "summary": "Assembly of a range of modules and components, together with fault finding and repair.",
-          "stack": []
-        },
-        {
-          "period": "Sep 2019 — Feb 2023",
-          "role": "*Ausbildung zum Mechatroniker* (apprenticeship as a mechatronics technician)",
-          "organisation": "RATIONAL AG",
-          "location": "Landsberg am Lech",
-          "summary": "Mechatronics apprenticeship under the German dual system, alongside the vocational school in Landsberg am Lech.",
-          "stack": []
-        }
-      ]
+      "title": "Experience"
     },
     "education": {
-      "title": "Education",
-      "kicker": "2013 — 2026",
-      "items": [
-        {
-          "period": "Sep 2024 — Jul 2026",
-          "role": "*Staatlich geprüfter Mechatroniktechniker* (state-certified mechatronics technician)",
-          "organisation": "Technikerschule Augsburg",
-          "location": "Augsburg",
-          "summary": "Mechatronics, robotics and automation engineering, completed together with the *Fachhochschulreife* (entrance qualification for a university of applied sciences).",
-          "stack": [
-            "C++",
-            "C",
-            "CAD / Inventor",
-            "Siemens TIA Portal",
-            "Robotics"
-          ]
-        },
-        {
-          "period": "Sep 2019 — Feb 2023",
-          "role": "*Ausbildung zum Mechatroniker* (apprenticeship as a mechatronics technician)",
-          "organisation": "Staatl. Berufsschule Landsberg a. Lech",
-          "location": "Landsberg am Lech",
-          "summary": "Vocational school half of the mechatronics apprenticeship.",
-          "stack": []
-        },
-        {
-          "period": "Sep 2013 — Sep 2019",
-          "role": "*Mittlere Reife* (intermediate school-leaving certificate)",
-          "organisation": "Mittelschule Landsberg",
-          "location": "Landsberg am Lech",
-          "summary": "Secondary school leaving certificate.",
-          "stack": []
-        }
-      ]
+      "title": "Education"
     },
     "links": {
       "title": "Links",

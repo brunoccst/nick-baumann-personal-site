@@ -1,60 +1,71 @@
 import { useTranslation } from 'react-i18next';
 
+import {
+  formatMonth,
+  localise,
+  sortTimeline,
+  timelineSpan,
+  type TimelineEntry,
+} from '../content/timeline';
+import { DEFAULT_LANGUAGE, isSupported } from '../i18n';
 import { EmphasisedText } from '../i18n/EmphasisedText';
-import { useTranslatedList } from '../i18n/useTranslatedList';
 import styles from './Section.module.scss';
 
-export interface TimelineEntry {
-  period: string;
-  role: string;
-  organisation: string;
-  location: string;
-  summary: string;
-  /** Skills or technologies attached to the entry, shown as tags. */
-  stack: string[];
+interface TimelineSectionProps {
+  /** Locale block under `sections` that holds the heading. */
+  sectionId: string;
+  entries: readonly TimelineEntry[];
 }
 
-/** Locale namespaces under `sections` that hold a dated list of entries. */
-export type TimelineSectionId = 'experience' | 'education';
-
 /**
- * A dated list of roles or qualifications. Experience and education differ only
- * in which locale block they read, so they share this renderer rather than
- * keeping two copies of the same markup in step by hand.
+ * A dated list of entries, newest first. The entries come from a file in
+ * `src/content`; only the heading and the "present" label come from the locale
+ * files. Separators between dates are drawn by the stylesheet.
  */
-export default function TimelineSection({ sectionId }: { sectionId: TimelineSectionId }) {
-  const { t } = useTranslation();
-  const items = useTranslatedList<TimelineEntry>(`sections.${sectionId}.items`);
+export default function TimelineSection({ sectionId, entries }: TimelineSectionProps) {
+  const { t, i18n } = useTranslation();
+  const language = isSupported(i18n.resolvedLanguage) ? i18n.resolvedLanguage : DEFAULT_LANGUAGE;
+  const present = t('timeline.present');
+  const span = timelineSpan(entries);
 
   return (
     <article className={styles.section}>
-      <span className={styles.kicker}>{t(`sections.${sectionId}.kicker`)}</span>
+      {span && (
+        <span className={`${styles.kicker} ${styles.range}`}>
+          <span>{span.from}</span>
+          <span>{span.to ?? present}</span>
+        </span>
+      )}
       <h2 className={styles.title}>{t(`sections.${sectionId}.title`)}</h2>
 
       <ol className={styles.list}>
-        {items.map((item, index) => (
-          <li key={index} className={styles.entry}>
+        {sortTimeline(entries).map((entry) => (
+          <li key={`${entry.start}-${localise(entry.role, language)}`} className={styles.entry}>
             <span className={styles.period}>
-              {item.period}
-              <span className={styles.separator} aria-hidden="true">
-                ·
+              <span className={styles.range}>
+                <time dateTime={entry.start}>{formatMonth(entry.start, language)}</time>
+                {entry.end ? (
+                  <time dateTime={entry.end}>{formatMonth(entry.end, language)}</time>
+                ) : (
+                  <span>{present}</span>
+                )}
               </span>
-              {item.location}
+              <span className={styles.location}>{localise(entry.location, language)}</span>
             </span>
 
             <h3 className={styles.role}>
-              <EmphasisedText>{item.role}</EmphasisedText>
+              <EmphasisedText>{localise(entry.role, language)}</EmphasisedText>
             </h3>
-            <span className={styles.organisation}>{item.organisation}</span>
+            <span className={styles.organisation}>{localise(entry.organisation, language)}</span>
             <p className={styles.summary}>
-              <EmphasisedText>{item.summary}</EmphasisedText>
+              <EmphasisedText>{localise(entry.summary, language)}</EmphasisedText>
             </p>
 
-            {item.stack.length > 0 && (
+            {entry.stack && entry.stack.length > 0 && (
               <ul className={styles.stack}>
-                {item.stack.map((tech, techIndex) => (
-                  <li key={techIndex} className={styles.tag}>
-                    {tech}
+                {entry.stack.map((tag, index) => (
+                  <li key={index} className={styles.tag}>
+                    {localise(tag, language)}
                   </li>
                 ))}
               </ul>

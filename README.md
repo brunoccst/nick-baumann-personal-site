@@ -66,11 +66,13 @@ Run from `personal-site.web`:
 | `npm run typecheck` | Type-checks without emitting (`tsc -b --noEmit`) |
 | `npm test` | Runs the test suite once (`vitest run`) |
 
-The test suite has 19 tests: 7 in `src/config/sections.test.ts` (section
+The test suite has 33 tests: 7 in `src/config/sections.test.ts` (section
 ordering, path uniqueness, route fallback), 5 in `src/i18n/locales.test.ts`
 (English and German have identical key shapes, and carry the metadata and
-hrefs the app expects), and 7 in `src/i18n/emphasis.test.ts` (splitting
-`*marked*` German terms out of a locale string).
+hrefs the app expects), 7 in `src/i18n/emphasis.test.ts` (splitting
+`*marked*` German terms out of a locale string), and 14 in
+`src/content/timeline.test.ts` (date formatting and ordering, and valid dates
+and text in every experience and education entry).
 
 ## Repository layout
 
@@ -116,6 +118,10 @@ personal-site.web/
     │   ├── EducationSection.tsx
     │   ├── LinksSection.tsx
     │   └── Section.module.scss
+    ├── content/
+    │   ├── timeline.ts         Entry type and date helpers
+    │   ├── experience.ts       Experience entries
+    │   └── education.ts        Education entries
     ├── config/sections.ts      The ordered section list
     ├── hooks/useDocumentTitle.ts
     ├── i18n/
@@ -224,7 +230,9 @@ defaults to English. `en.json` is the fallback locale; a key missing from
 
 **No component holds user-facing text.** Components call `t('some.key')`, or
 `useTranslatedList<T>('some.key')` for arrays and arrays of objects. All
-strings live in `src/i18n/locales/en.json` and `src/i18n/locales/de.json`.
+strings live in `src/i18n/locales/en.json` and `src/i18n/locales/de.json`,
+except the experience and education entries, which keep both languages side by
+side in `src/content/` (see [Adding an experience entry](#adding-an-experience-entry)).
 
 To add a translation key:
 
@@ -256,6 +264,42 @@ locale carries no markers at all.
 Home address, phone number, personal email address, date and place of birth,
 nationality, and school grades. Do not add them without asking Nick first. If
 a contact route is wanted, prefer a form over an address on the page.
+
+## Adding an experience entry
+
+Timeline entries (experience and education) live in TypeScript files under `src/content/`,
+not in the locale files. Each entry keeps every language side by side, so
+adding one is a single edit. Add an object to the array in
+`src/content/experience.ts` (or `education.ts`):
+
+```ts
+{
+  start: '2026-01',
+  // end: '2026-12',   leave out while the role is ongoing
+  role: { en: '*Monteur* (assembly technician)', de: 'Monteur' },
+  organisation: 'RATIONAL AG',
+  location: { en: 'Germany', de: '…' },
+  summary: { en: 'One or two sentences about the role.', de: '…' },
+  stack: ['Siemens TIA Portal'],
+},
+```
+
+- `start` and `end` are months written as `YYYY-MM`. The page formats them
+  for the visitor's language (`Jan 2026`) and shows the "present" label from
+  the locale files when `end` is missing.
+- Any text field is either one string, used in every language, or an object
+  with one string per language. TypeScript fails the build if a language is
+  missing.
+- In the English text, `*asterisks*` mark a German term, as described in
+  [German terms in the English locale](#german-terms-in-the-english-locale).
+- `stack` is optional; leave it out to show no tags.
+- Order does not matter: entries are sorted newest first. The year range
+  above the heading is worked out from the entries too.
+- The dash between dates and the dot before the location are drawn in
+  `Section.module.scss`, not written in the data.
+
+`npm test` checks that every date is a real month, that no entry ends before
+it starts and that no text is empty in any language.
 
 ## Adding a section
 
