@@ -214,7 +214,8 @@ hover text, so it needs 4.5:1, not the 3:1 a non-text control would.
 `<html>`, mirrors the mode into a MUI theme for the two icon buttons in
 `SystemControls`, and persists the choice to `localStorage` under the key
 `nick-baumann-site.theme`. With no saved value, it follows the operating
-system's `prefers-color-scheme`.
+system's `prefers-color-scheme`. A short inline script in `index.html` applies
+the same choice before first paint, so the page never flashes the wrong theme.
 
 ## Translations
 

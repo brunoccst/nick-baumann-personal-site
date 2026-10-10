@@ -182,3 +182,13 @@ apply to these lists:
 
 An index key is also simpler than deriving a stable key from content that is
 expected to be edited.
+
+## Why `index.html` carries an inline script
+
+`AppThemeProvider` only corrects `data-theme` after React has rendered, so a
+visitor whose saved or system theme is light used to see one dark frame
+first. A few lines in `<head>` read the same `localStorage` key and media
+query before anything paints, which is the only way to avoid that in a
+single-page app without server rendering. The logic is duplicated rather than
+shared because the script must run before any bundle loads; both copies point
+at each other.

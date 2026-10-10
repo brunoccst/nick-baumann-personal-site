@@ -17,21 +17,6 @@ npm 10.9.3 fails to install this project's dependencies. The bundled
 npx --yes npm@11 install
 ```
 
-## A flash of the wrong theme on first paint
-
-`index.html` ships `data-theme="dark"` statically, along with a matching
-`<meta name="color-scheme" content="dark">` and `theme-color`. `main.tsx`
-mounts `AppThemeProvider`, which reads the saved or system theme and
-corrects the `data-theme` attribute — but only after React has rendered. A
-visitor whose saved preference or `prefers-color-scheme` is light sees one
-dark frame before the correction lands.
-
-This is inherent to a single-page app with no server rendering and no inline
-script in `<head>` to set the attribute before first paint. Fixing it would
-mean adding a small blocking script to `index.html` that reads
-`localStorage` and `matchMedia` before React loads — a reasonable follow-up,
-not done here to keep `index.html` free of inline logic.
-
 ## No runtime validation of locale shape
 
 `useTranslatedList<T>` (`src/i18n/useTranslatedList.ts`) reads a value out of

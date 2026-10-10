@@ -7,6 +7,25 @@
     <meta name="description" content="Personal site of Nick Baumann." />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Nick Baumann</title>
+    <script>
+      // Applies the saved or system theme before first paint, so a light-theme
+      // visitor never sees a dark frame while React loads. Mirrors
+      // `detectMode` and `THEME_COLOR` in `src/theme/AppThemeProvider.tsx`;
+      // keep the two in step.
+      (function () {
+        var mode;
+        try {
+          mode = localStorage.getItem('nick-baumann-site.theme');
+        } catch (e) {}
+        if (mode !== 'light' && mode !== 'dark') {
+          mode = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', mode);
+        if (mode === 'light') {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#145b8a');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
