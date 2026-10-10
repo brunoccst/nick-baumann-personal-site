@@ -84,6 +84,7 @@ nick-baumann-personal-site/
 ├── netlify.toml                Netlify build and header settings
 ├── docs/
 │   ├── DECISIONS.md            Why the project is built this way
+│   ├── GOOGLE-SEARCH.md        How to get the site into Google Search
 │   ├── KNOWN-ISSUES.md         What is wrong or incomplete
 │   ├── NEXT-STEPS.md           Planned work
 │   └── superpowers/            Design spec and implementation plan — the
@@ -342,6 +343,10 @@ The Netlify project is named `nick-baumann` and serves the site at
 [nick-baumann.netlify.app](https://nick-baumann.netlify.app). It builds from
 `main`; pushing to `main` triggers a deploy, and every pull request gets its
 own preview build.
+
+To get the site into Google Search, follow
+[docs/GOOGLE-SEARCH.md](docs/GOOGLE-SEARCH.md). It is written for someone who
+does not program.
 
 ## Licence
 
